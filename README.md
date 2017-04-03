@@ -26,7 +26,10 @@ This branch contains a very basic project structure that includes:
 
 This branch contains the complete starter code, based on the content of the `master` branch, and adding:
 * A (very minimalist) `login.html` template
-* A `login-ctrl.js` file (obviously used by the previous template)
+* A `login-ctrl.js` file with a `LoginCtrl` for logging in
+* A `logout-ctrl.js` file with a `LogoutCtrl` (for... logging out)
 * An `auth-service.js` file that contains the service handling authentification
+* The `angular-storage` library
+* A `second.html` template that contains the logout button
 
 [masrad]: https://github.com/MediaComem/comem-masrad-dfa
