@@ -31,5 +31,6 @@ This branch contains the complete starter code, based on the content of the `mas
 * An `auth-service.js` file that contains the service handling authentification
 * The `angular-storage` library
 * A `second.html` template that contains the logout button
+* An `auth-interceptor.js` file with the Interceptor that adds the `Authorization` header
 
 [masrad]: https://github.com/MediaComem/comem-masrad-dfa
