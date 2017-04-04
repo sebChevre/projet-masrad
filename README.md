@@ -20,8 +20,6 @@ This branch contains a very basic project structure that includes:
   * A `config` function attached to this `app` module with one predefined route, `home`
 * An almost blank `main.html` template, used by the `home` state
 
-**Feel free to change file names and/or content, as you see fit.**
-
 ## Branch `solution`
 
 This branch contains the complete starter code, based on the content of the `master` branch, and adding:
@@ -32,5 +30,7 @@ This branch contains the complete starter code, based on the content of the `mas
 * The `angular-storage` library
 * A `second.html` template that contains the logout button
 * An `auth-interceptor.js` file with the Interceptor that adds the `Authorization` header
+
+**Feel free to change file names and/or content, as you see fit.**
 
 [masrad]: https://github.com/MediaComem/comem-masrad-dfa
