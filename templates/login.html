@@ -1,14 +1,32 @@
-<form id="login" name="loginForm">
-  <div class="form-group">
-    <label for="username">Username</label>
-    <input required type="text" id="username" class="form-control" ng-model="login.user.name">
-  </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input required type="password" class="form-control" id="password" ng-model="login.user.password">
-  </div>
-  <button class="btn btn-success" ng-click="login.connect()">Log in</button>
+<form class="form-signin" id="login" name="loginForm" novalidate>
+
+    <h2 class="form-signin-heading">Connection</h2>
+
+    <!-- login et validation -->
+    <input type="text" ng-model="login.user.name" class="form-control" name="login" placeholder="Utilisateur" required minlength="3" maxlength="25" />
+    <div ng-if='loginForm.login.$dirty'>
+        <div class="field-info" ng-if='loginForm.login.$error.required'>le login est obligatoire</div>
+        <div class="field-info" ng-if='loginForm.login.$error.minlength'>minimum 3 caractères</div>
+        <div class="field-info" ng-if='loginForm.login.$error.maxlength'>maximum 25 caractères</div>
+    </div>
+
+    <!-- pass et validation -->
+    <input type="password" ng-model="login.user.password" class="form-control" name="password" placeholder="Mot de passe" required minlength="4" />
+    <div ng-if='loginForm.password.$dirty'>
+        <div class="field-info" ng-if='loginForm.password.$error.required'>le mot de passe est obligatoire</div>
+        <div class="field-info" ng-if='loginForm.password.$error.minlength'>minimum 4 caractères</div>
+    </div>
+
+    <!-- rememebre me et create account -->
+    <label class="checkbox">
+        <a ui-sref="user-creation">Crééer un compte</a>
+    </label>
+
+    <!-- submission button & loginStatusBox -->
+	<button class="btn btn-lg btn-primary btn-block" ng-click="login.connect()" ng-disabled='loginForm.$invalid'>Log in</button>
+	
+	<div class="alert alert-danger" ng-if="login.error">
+	  {{ login.error }}
+	</div>
+
 </form>
-<div class="alert alert-danger" ng-if="login.error">
-  {{ login.error }}
-</div>

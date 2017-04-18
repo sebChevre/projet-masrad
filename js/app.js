@@ -1,4 +1,4 @@
-angular.module('app', ['ui.router', 'angular-storage']);
+angular.module('app', ['ui.router', 'angular-storage','cgNotify']);
 
 angular.module('app').config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     $httpProvider.interceptors.push('AuthInterceptor');
@@ -19,6 +19,13 @@ angular.module('app').config(function ($stateProvider, $urlRouterProvider, $http
 	    url: '/second',
 	    templateUrl: './templates/second.html'
 	});
+	
+    $stateProvider.state('user-creation', {
+        url: '/user-creation',
+        templateUrl: './templates/newuser-template.html'
+        //controller: 'NewUserController'
+
+    });
 
     $urlRouterProvider.otherwise(function($injector) {
         $injector.get('$state').go('home');
