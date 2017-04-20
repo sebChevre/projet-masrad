@@ -1,0 +1,54 @@
+<form class="form-signin" name="signinForm" novalidate>
+
+    <fieldset ng-disabled="userDetail.isReadOnly">
+        <h3 class="form-signin-heading">{{userDetail.title}}</h3>
+
+        <!-- login et validation -->
+        <input type="text" ng-model="userDetail.user.name" class="form-control" name="login" placeholder="Utilisateur" required minlength="3" />
+
+        <div ng-if='signinForm.login.$dirty'>
+            <div class="field-info" ng-if='signinForm.login.$error.required'>Saisissez votre login</div>
+            <div class="field-info" ng-if='signinForm.login.$error.minlength'>Le login doit avoir au moins 3 caractères</div>
+        </div>
+
+        <!-- pass et validation -->
+        <input type="password" ng-model="userDetail.user.password" class="form-control" name="password" placeholder="Mot de passe" required minlength="3" />
+        <div ng-if='signinForm.password.$dirty'>
+            <div class="field-info" ng-if='signinForm.password.$error.required'>Saisissez votre mot de passe</div>
+            <div class="field-info" ng-if='signinForm.password.$error.minlength'>Le mot de passe doit avoir au moins 3 caractères</div>
+        </div>
+
+        <!-- firstname -->
+        <input type="text" ng-model="userDetail.user.firstname" class="form-control" name="firstname" placeholder="Prénom" required minlength="3" />
+        <div ng-if='signinForm.firstname.$dirty'>
+            <div class="field-info" ng-if='signinForm.firstname.$error.required'>Saisissez votre rpénom</div>
+            <div class="field-info" ng-if='signinForm.firstname.$error.minlength'>Le prénom doit avoir au moins 3 caractères</div>
+        </div>
+
+        <!--lastname -->
+        <input type="text" ng-model="userDetail.user.lastname" class="form-control" name="lastname" placeholder="Nom" required minlength="3" />
+        <div ng-if='signinForm.lastname.$dirty'>
+            <div class="field-info" ng-if='signinForm.lastname.$error.required'>Saisissez votre nom</div>
+            <div class="field-info" ng-if='signinForm.lastname.$error.minlength'>Le nom doit avoir au moins 3 caractères</div>
+        </div>
+
+        <!-- phone -->
+        <input type="tel" ng-model="userDetail.user.phone" class="form-control" name="phone" placeholder="Téléphone" required minlength="3" />
+        <div ng-if='signinForm.phone.$dirty'>
+            <div class="field-info" ng-if='signinForm.phone.$error.required'>Téléphone:</div>
+            <div class="field-info" ng-if='signinForm.phone.$error.minlength'>Le téléphone avoir au moins 8 caractères</div>
+        </div>
+
+        <!-- submission button & loginStatusBox -->
+        <button  class="btn btns btn-lg btn-primary btn-block" type="button" ng-click="userDetail.submit()" ng-hide="userDetail.isReadOnly" ng-disabled='signinForm.$invalid'>Valider</button>
+
+    </fieldset>
+
+
+    <button class="btn btns btn-lg btn-outline-danger btn-block" ng-hide="userDetail.isReadOnly" ui-sref="home">Annuler</button>
+    <button class="btn btns btn-lg btn-danger btn-block" ng-show="userDetail.isReadOnly" ng-click="userDetail.update()">Modifier</button>
+    <button class="btn btns btn-lg btn-primary btn-block" ng-show="userDetail.isReadOnly" ui-sref="home">Fermer</button>
+
+
+
+</form>
