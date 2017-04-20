@@ -1,11 +1,17 @@
-angular.module('app', ['ui.router', 'angular-storage','cgNotify']);
+var app = angular.module('app', ['ui.router', 'angular-storage','cgNotify']);
 
-angular.module('app').config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
+app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     $httpProvider.interceptors.push('AuthInterceptor');
+
+
+
+   // $httpProvider.defaults.transformRequest.push(spinnerFunction);
+
     $stateProvider
     .state('home', {
         url: '',
-        templateUrl: './templates/main.html'
+        templateUrl: './templates/home.html',
+        controller: 'HomeCtrl as home'
     });
 
     // After home state
@@ -15,15 +21,18 @@ angular.module('app').config(function ($stateProvider, $urlRouterProvider, $http
         controller: 'LoginCtrl as login'
     });
 
-	$stateProvider.state('second', {
-	    url: '/second',
-	    templateUrl: './templates/second.html'
-	});
 	
-    $stateProvider.state('user-creation', {
-        url: '/user-creation',
-        templateUrl: './templates/newuser-template.html'
-        //controller: 'NewUserController'
+    $stateProvider.state('signin', {
+        url: '/signin',
+        templateUrl: './templates/user-detail.html',
+        controller: 'UserSigninCtrl as userDetail'
+
+    });
+
+    $stateProvider.state('user-detail', {
+        url: '/user-detail',
+        templateUrl: './templates/user-detail.html',
+        controller: 'UserDetailCtrl as userDetail'
 
     });
 
@@ -32,11 +41,15 @@ angular.module('app').config(function ($stateProvider, $urlRouterProvider, $http
     });
 });
 
-angular.module('app').run(function(AuthService, $rootScope, $state) {
+app.run(function(AuthService, $rootScope, $state) {
     $rootScope.$on('$stateChangeStart', function(event, toState) {
-        if (!AuthService.token && toState.name !== 'login') {
+        if (!AuthService.token && nonProtectedRoute(toState)) {
             event.preventDefault();
             $state.go('login');
         }
     });
+
+    var nonProtectedRoute = function (toState) {
+        return toState.name !== 'login' && toState.name !== 'signin';
+    }
 });
