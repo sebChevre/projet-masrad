@@ -6,11 +6,16 @@ app.controller('UserDetailCtrl',function($state,$http,$scope,AuthService,NotifyS
     userDetail.isUpdateMode = true;     //mode update
     userDetail.isReadOnly = true;
 
-    //déblocage des champs du formulaire
+
+    //gestion des attributs readonly des champs
     userDetail.update = function () {
         userDetail.isReadOnly = false;
-    }
+    };
 
+
+    userDetail.cancel = function (){
+        userDetail.isReadOnly = true;
+    };
 
     userDetail.submit = function () {
 
