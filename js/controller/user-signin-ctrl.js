@@ -8,7 +8,9 @@ app.controller('UserSigninCtrl',function($scope, AuthService, NotifyService, $ht
 
     userDetail.isUpdateMode = false;
 
-
+    userDetail.cancel = function (){
+        $state.go('home');
+    };
 
     userDetail.submit = function () {
 
@@ -19,7 +21,7 @@ app.controller('UserSigninCtrl',function($scope, AuthService, NotifyService, $ht
             roles.push('citizen');
             userDetail.user.roles = roles;
 
-            console.log(userDetail.user)
+            console.log(userDetail.user);
 
             return $http({
                 method: 'POST',

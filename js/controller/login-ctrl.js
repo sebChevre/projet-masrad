@@ -22,7 +22,7 @@ app.controller('LoginCtrl',function(AuthService, NotifyService, $scope,$http, $s
             login.submiting = false;
             clearFields();
       });
-  }
+  };
 
   var clearFields = function () {
       login.user = {};
