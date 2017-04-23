@@ -1,32 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Angular Auth Starter</title>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Third-party styles -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <title>Angular Auth Starter</title>
 
-    <!-- Application styles -->
-    <link rel="stylesheet" href="css/app.css">
-  </head>
+  <!-- Third-party styles -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
-  <body ng-app='app'>
+  <!-- Application styles -->
+  <link rel="stylesheet" href="css/app.css">
+   <style type="text/css">main { margin-top: 60px; }</style>
+</head>
+
+<body ng-app='app'>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top" ng-hide="isConnected">
+    <div class="container">
+      <a class="navbar-brand" href="#">Home</a>
+      <ul class="nav navbar-nav">
+        <li><a href="#">Intro</a></li>
+      </ul>
+      <div class="collpase navbar-collapse navbar-right">
+        <ul class="nav navbar-nav">
+          <li><a href="#">Settings</a></li>
+        </ul>
+        <a class="btn btn-success navbar-btn">Log out</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
     <div ui-view />
-    
-    <!-- Script inclusions -->
-    <script type="text/javascript" src="assets/js/lodash.min.js"></script>
-    <script type="text/javascript" src="assets/js/moment.min.js"></script>
-    <script type="text/javascript" src="assets/js/angular.min.js"></script>
-    <script type="text/javascript" src="assets/js/angular-ui-router.min.js"></script>
-     <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
-    <script type="text/javascript" src="js/login-ctrl.js"></script>
-    <script type="text/javascript" src="js/auth-service.js"></script>
-    <script type="text/javascript" src="js/logout-ctrl.js"></script>
-    <script type="text/javascript" src="js/auth-interceptor.js"></script>
-  </body>
+  </main>
+
+  <!-- Script inclusions -->
+  <script type="text/javascript" src="assets/js/lodash.min.js"></script>
+  <script type="text/javascript" src="assets/js/moment.min.js"></script>
+  <script type="text/javascript" src="assets/js/angular.min.js"></script>
+  <script type="text/javascript" src="assets/js/angular-ui-router.min.js"></script>
+  <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+  <script type="text/javascript" src="js/login-ctrl.js"></script>
+  <script type="text/javascript" src="js/auth-service.js"></script>
+  <script type="text/javascript" src="js/logout-ctrl.js"></script>
+  <script type="text/javascript" src="js/auth-interceptor.js"></script>
+  <link rel="stylesheet" href="assets/leaflet.css">
+</body>
+
 </html>
