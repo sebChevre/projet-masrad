@@ -26,7 +26,7 @@ app.controller('UserDetailCtrl',function($state,$http,$scope,AuthService,NotifyS
         }).then(function successCallback(response) {
 
             NotifyService.showSucess('Utilisateur modifié avec succès');
-            $state.go('home');
+            $state.go('issues');
 
         }, function errorCallback(response) {
 

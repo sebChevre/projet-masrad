@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router', 'angular-storage','cgNotify']);
+var app = angular.module('app', ['ui.router', 'angular-storage','cgNotify','ngGeolocation','leaflet-directive']);
 
 app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     $httpProvider.interceptors.push('AuthInterceptor');

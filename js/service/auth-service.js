@@ -1,4 +1,4 @@
-app.factory('AuthService', function(store) {
+app.factory('AuthService', function(store, UtilsService) {
   var service = {
     token: store.get('auth-token'),
     user : store.get('auth-user'),
@@ -16,5 +16,6 @@ app.factory('AuthService', function(store) {
       store.remove('auth-user');
     }
   };
+
   return service;
 });
