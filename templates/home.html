@@ -1,9 +1,47 @@
+<div class="home-wrapper">
+  <nav class="navbar navbar-inverse">
 
-<h1>Welcome to {{ homePageCtrl.name }}</h1>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="dropdown" ng-show="home.hasUserStaffRight()">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Staff <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Staff1</a></li>
+            <li><a href="#">Staff2</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Staff3</a></li>
 
-<p class="lead">Labore amet nisi non magna dolor adipisicing exercitation nisi deserunt sunt eu consequat. Proident voluptate consequat et tempor sint culpa incididunt velit. Amet reprehenderit dolore aliqua elit aute quis deserunt in ea. Anim non amet mollit labore cillum consequat quis pariatur. Eu magna nisi cupidatat sit consectetur. Sit labore proident consequat cupidatat proident est mollit cupidatat ea elit esse consectetur. Veniam et et et incididunt elit eiusmod culpa occaecat consequat Lorem id sunt do.</p>
+          </ul>
+        </li>
+        <li>
+          <p class="navbar-text">Connecté en tant que <a ui-sref="user-detail">{{home.username}}</a></p>
+        </li>
+        <li>
 
-<ul>
-  <li>Mollit Lorem id dolor tempor do. Sit aliqua deserunt dolore sunt anim irure amet culpa irure est deserunt nisi quis. Excepteur incididunt est ex qui magna exercitation labore mollit qui enim consectetur. Labore duis aliqua irure sint sint nisi irure cillum.</li>
-  <li>Consequat dolor esse duis quis duis nulla sint Lorem qui. Ea consequat in cupidatat incididunt dolor in sint amet Lorem. Consequat veniam ipsum minim mollit. Amet officia elit non velit excepteur cillum et incididunt nostrud duis qui duis proident. Adipisicing ut ut et elit irure ullamco ullamco officia consequat exercitation ullamco dolore pariatur. Cupidatat velit officia aliqua ut nostrud duis ea id. Ad ex aliquip dolore aute.</li>
-</ul>
+        </li>
+      </ul>
+      <button id="logout-btn" type="button " class="btn btn-default navbar-btn navbar-right" ng-click="home.logout()">Déconnection</button>
+
+    </div>
+  </nav>
+  <div>
+    <section class="col-md-3" ng-controller="IssuesCtrl as issues">
+      <div class="list-group" ui-sref-active="active">
+        <h2>List of issues</h2>
+        <!-- list of issues -->
+
+      </div>
+    </section>
+    <section class="col-md-9" ng-controller="MapCtrl as map">
+      <!-- map -->
+      <div ng-controller="MapCtrl as map">
+        <leaflet width="100%" height="480px" lf-center="map.center" defaults="map.defaults" markers="map.markers"></leaflet>
+        <button class="btn btn-default" ng-click="map.addMarker()">Add marker</button>
+
+      </div>
+
+    </section>
+
+  </div>
+
+</div>

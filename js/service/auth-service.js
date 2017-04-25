@@ -17,15 +17,5 @@ app.factory('AuthService', function(store, UtilsService) {
     }
   };
 
-
-  service.isUserLogged = function() {
-    if(UtilsService.isUndefinedOrNull(service.token) || UtilsService.isUndefinedOrNull(service.user)){
-      return false;
-    }
-    return true;
-  };
-
-
-
   return service;
 });

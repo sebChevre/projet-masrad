@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router', 'angular-storage','cgNotify','leaflet-directive','ngGeolocation']);
+var app = angular.module('app', ['ui.router', 'angular-storage','cgNotify','ngGeolocation','leaflet-directive']);
 
 app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     $httpProvider.interceptors.push('AuthInterceptor');
@@ -7,22 +7,11 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
    // $httpProvider.defaults.transformRequest.push(spinnerFunction);
 
-    $stateProvider.state('home', {
+    $stateProvider
+    .state('home', {
         url: '',
         templateUrl: './templates/home.html',
         controller: 'HomeCtrl as home'
-    });
-
-    $stateProvider.state('issues', {
-        url: '/issues',
-        templateUrl: './templates/issues.html',
-        controller: 'IssuesCtrl as issues'
-    });
-
-    $stateProvider.state('map', {
-        url: '/issues',
-        templateUrl: './templates/issues.html',
-        controller: 'MapCtrl as map'
     });
 
     // After home state

@@ -19,40 +19,9 @@
 
 <body ng-app='app'>
 
-  <div class="home-wrapper">
-    <nav class="navbar navbar-inverse">
-
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-controller="HomeCtrl as home">
-        <ul class="nav navbar-nav">
-          <li class="dropdown" ng-show="home.hasUserStaffRight()">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Staff <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Staff1</a></li>
-              <li><a href="#">Staff2</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Staff3</a></li>
-            </ul>
-          </li>
-          <li>
-            <p class="navbar-text" >Connecté en tant que <a ui-sref="user-detail">{{home.username}}</a></p>
-          </li>
-          <li>
-
-          </li>
-        </ul>
-        <button id="logout-btn" type="button " class="btn btn-default navbar-btn navbar-right" ng-click="home.logout()">Déconnection</button>
-
-      </div>
-      <div>
-      </div>
-    </nav>
-  </div>
-
-
-
-   <main class="container">
-      <div ui-view />
-    </main>
+  <main class="container">
+    <div ui-view />
+  </main>
 
 
   <!-- Script inclusions -->
@@ -86,7 +55,7 @@
   <script type="text/javascript" src="js/service/utils-service.js"></script>
   <script type="text/javascript" src="js/service/auth-service.js"></script>
   <script type="text/javascript" src="js/service/notify-service.js"></script>
-   <script type="text/javascript" src="js/service/location-service.js"></script>
+  <script type="text/javascript" src="js/service/location-service.js"></script>
 
 
 
