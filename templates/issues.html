@@ -2,12 +2,17 @@
   <section class="col-md-3" ng-controller="IssuesCtrl as issues">
     <div class="list-group" ui-sref-active="active">
       <h2>List of issues</h2>
-        <!-- list of issues -->
-      
+      <!-- list of issues -->
+
     </div>
   </section>
   <section class="col-md-9" ng-controller="MapCtrl as map">
-      <!-- map -->
-      <leaflet width="100%" height="480px" defaults="map.defaults"  lf-center="map.center"></leaflet>
+    <!-- map -->
+    <div ng-controller="MapCtrl as map">
+      <leaflet width="100%" height="480px" lf-center="map.center" defaults="map.defaults" markers="map.markers"></leaflet>
+      <button class="btn btn-default" ng-click="map.addMarker()">Add marker</button>
+
+    </div>
+
   </section>
 </div>

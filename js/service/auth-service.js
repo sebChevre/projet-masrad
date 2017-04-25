@@ -1,4 +1,4 @@
-app.factory('AuthService', function(store) {
+app.factory('AuthService', function(store, UtilsService) {
   var service = {
     token: store.get('auth-token'),
     user : store.get('auth-user'),
@@ -18,12 +18,14 @@ app.factory('AuthService', function(store) {
   };
 
 
-  service.isLogged = function() {
-    if(service.token === null || service.user === null) {
+  service.isUserLogged = function() {
+    if(UtilsService.isUndefinedOrNull(service.token) || UtilsService.isUndefinedOrNull(service.user)){
       return false;
     }
     return true;
   };
+
+
 
   return service;
 });

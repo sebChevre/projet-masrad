@@ -27,7 +27,7 @@ app.controller('LoginCtrl',function(AuthService, NotifyService, $scope,$http, $s
       });
 
       login.isLogged = function() {
-        return logged;
+        return AuthService.isUserLogged();
       }
   };
 

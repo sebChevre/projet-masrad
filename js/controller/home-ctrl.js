@@ -6,10 +6,8 @@ app.controller('HomeCtrl', function (AuthService, NotifyService, $state, $scope)
     var home = this;
 
     //Récupération des informations de l'utilsateur connecté
-    if(AuthService.isLogged()) {
-        home.username = AuthService.user.name;
-        home.userRoles = AuthService.user.roles;
-    } 
+    home.username = AuthService.user.name;
+    home.userRoles = AuthService.user.roles;
 
     //fonction de logout
     home.logout = function () {
@@ -31,11 +29,11 @@ app.controller('HomeCtrl', function (AuthService, NotifyService, $state, $scope)
 
         console.log("----------- logged ----------------");
         console.log(AuthService.isLogged);
-        return AuthService.isLogged;
+        return AuthService.isUserLogged();
     };
     
     var userRoleContainsStaff = function () {
-        if(AuthService.isLogged()) {
+        if(AuthService.isUserLogged()) {
             var hasStaffRole = false;
 
             var staffRoles = home.userRoles.filter(function (e) {
