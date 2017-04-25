@@ -2,6 +2,10 @@ body {
     background: #eee !important;
 }
 
+main {
+  margin: 0px 0;
+}
+
 .wrapper {
     margin-top: 80px;
     margin-bottom: 80px;

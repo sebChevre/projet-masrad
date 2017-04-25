@@ -16,5 +16,14 @@ app.factory('AuthService', function(store) {
       store.remove('auth-user');
     }
   };
+
+
+  service.isLogged = function() {
+    if(service.token === null || service.user === null) {
+      return false;
+    }
+    return true;
+  };
+
   return service;
 });
