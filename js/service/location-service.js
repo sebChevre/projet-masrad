@@ -20,8 +20,16 @@ app.factory('LocationService', function (store, $geolocation) {
             store.remove('longitude');
         },
 
+
+
         setCurrentPosition : function() {
-            $geolocation.getCurrentPosition()
+            $geolocation.getCurrentPosition();
+            $geolocation.watchPosition({
+                timeout: 60000,
+                maximumAge: 250,
+                enableHighAccuracy: true
+            })
+
         .then(function (position) {
             // This will be executed when the location is accessed
             service.setLocation(position);
