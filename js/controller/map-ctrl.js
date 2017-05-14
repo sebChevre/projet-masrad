@@ -7,9 +7,37 @@ app.controller('IssuesCtrl', function (AuthService, NotifyService, LocationServi
     // do something with filter and request service
 });
 
-app.controller('MapCtrl', function (AuthService, NotifyService, LocationService, $stateParams, $state, $scope, $geolocation) {
+app.controller('MapCtrl', function (AuthService, NotifyService, LocationService, ModalService, UtilsService, $stateParams, $state, $scope, $geolocation) {
 
     var map = this;
+
+    $scope.complexResult = null;
+
+    // Call the modal window
+    $scope.showNewIssue = function (lat, lon) {
+        ModalService.showModal({
+            templateUrl: "templates/newIssue.html",
+            controller: "ModalInstanceCtrl",
+            inputs: {
+                title: "Saisie d'une nouvelle issue",
+                latitude: lat,
+                longitude: lon
+            }
+        }).then(function (modal) {
+            modal.element.modal();
+            modal.close.then(function (result) {
+                $scope.complexResult = "Name: " + result.name + ", latitude: " + result.latitude + ", longitude:" + result.longitude;
+                if (UtilsService.isUndefinedOrNull(result) || UtilsService.isUndefinedOrNull(result.name) || UtilsService.isUndefinedOrNull(result.latitude) || UtilsService.isUndefinedOrNull(result.longitude)) {
+                    console.log("Cannot insert a new Issue, the content of result isnt valid.")
+                } else {
+                    map.addNewIssue(result);
+                }
+
+            });
+        });
+
+    };
+
     map.center = {
         lat: LocationService.latitude,
         lng: LocationService.longitude,
@@ -83,18 +111,34 @@ app.controller('MapCtrl', function (AuthService, NotifyService, LocationService,
         })
     }
 
+    map.addNewIssue = function (result) {
+        map.markers.push({
+            name: result.name,
+            lat: result.latitude,
+            lng: result.longitude,
+            icon: myIcon
+        })
+    }
+
     // Event listener to react to user clicking the map
     $scope.$on('leafletDirectiveMap.click', function (event, args) {
-        alert('Map clicked at coordinates [' + args.leafletEvent.latlng.lat + ', ' + args.leafletEvent.latlng.lng + ']')
+        console.log("create new issue");
+        console.log('Map clicked at coordinates [' + args.leafletEvent.latlng.lat + ', ' + args.leafletEvent.latlng.lng + ']');
+        $scope.showNewIssue(args.leafletEvent.latlng.lat, args.leafletEvent.latlng.lng);
+
+        //alert('Map clicked at coordinates [' + args.leafletEvent.latlng.lat + ', ' + args.leafletEvent.latlng.lng + ']')
     })
 
     // Event listener to react to user clicking a marker
     $scope.$on('leafletDirectiveMarker.click', function (events, args) {
-        alert('Marker clicked: ' + args.model.name)
+
+        console.log('Marker clicked: ' + args.model.name);
+        //alert('Marker clicked: ' + args.model.name)
     })
 
     // Event listener to react to user finishing dragging a marker
     $scope.$on('leafletDirectiveMarker.dragend', function (events, args) {
-        alert('Marker moved to coordinates [' + args.model.lat + ', ' + args.model.lng + ']')
+        console.log('Marker moved to coordinates [' + args.model.lat + ', ' + args.model.lng + ']');
+        //alert('Marker moved to coordinates [' + args.model.lat + ', ' + args.model.lng + ']')
     })
 });
