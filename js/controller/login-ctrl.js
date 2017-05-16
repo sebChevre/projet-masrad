@@ -1,10 +1,10 @@
 app.controller('LoginCtrl', function (AuthService, NotifyService, LocationService, $scope, $http, $state, API_LOGIN_URL) {
 
     $scope.init = function () {
-        console.log("tutu");
+        console.log("scope init");
 
-        LocationService.setCurrentPosition();
     };
+
     $scope.init();
 
 
@@ -25,6 +25,7 @@ app.controller('LoginCtrl', function (AuthService, NotifyService, LocationServic
         }).then(function (res) {
             AuthService.setLogged(res.data.token, res.data.user);
             NotifyService.showSucess('Connexion effectué avec succès!');
+            LocationService.setCurrentPosition();
             logged = true;
             $state.go('home');
         }).catch(function (error) {
