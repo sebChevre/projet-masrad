@@ -122,11 +122,11 @@ app.controller('MapCtrl', function (AuthService, NotifyService, LocationService,
 
     // Event listener to react to user clicking the map
     $scope.$on('leafletDirectiveMap.click', function (event, args) {
-        console.log("create new issue");
+        console.log("create new issue, event=" + event);
         console.log('Map clicked at coordinates [' + args.leafletEvent.latlng.lat + ', ' + args.leafletEvent.latlng.lng + ']');
+        //alert('Map clicked at coordinates [' + args.leafletEvent.latlng.lat + ', ' + args.leafletEvent.latlng.lng + ']')
         $scope.showNewIssue(args.leafletEvent.latlng.lat, args.leafletEvent.latlng.lng);
 
-        //alert('Map clicked at coordinates [' + args.leafletEvent.latlng.lat + ', ' + args.leafletEvent.latlng.lng + ']')
     })
 
     // Event listener to react to user clicking a marker
@@ -141,4 +141,5 @@ app.controller('MapCtrl', function (AuthService, NotifyService, LocationService,
         console.log('Marker moved to coordinates [' + args.model.lat + ', ' + args.model.lng + ']');
         //alert('Marker moved to coordinates [' + args.model.lat + ', ' + args.model.lng + ']')
     })
+
 });
