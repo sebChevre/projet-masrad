@@ -1,11 +1,13 @@
 app.controller('ModalInstanceCtrl', [
-    '$scope', '$element', 'title', 'close', 'latitude', 'longitude',
-    function ($scope, $element, title, close, latitude, longitude) {
+    '$scope', '$element', 'title', 'close', 'latitude', 'longitude', 'types', 'selectedType',
+    function ($scope, $element, title, close, latitude, longitude, types, selectedType) {
 
         $scope.name = null;
         $scope.title = title;
         $scope.latitude = latitude;
         $scope.longitude = longitude;
+        $scope.types = types
+        $scope.selectedType = null;
 
         //  This close function doesn't need to use jQuery or bootstrap, because
         //  the button has the 'data-dismiss' attribute.
@@ -13,7 +15,9 @@ app.controller('ModalInstanceCtrl', [
             close({
                 name: $scope.name,
                 latitude: $scope.latitude,
-                longitude: $scope.longitude
+                longitude: $scope.longitude,
+                types: $scope.types,
+                selectedType: $scope.selectedType
             }, 500); // close, but give 500ms for bootstrap to animate
         };
 
@@ -28,7 +32,9 @@ app.controller('ModalInstanceCtrl', [
             close({
                 name: null,
                 latitude: null,
-                longitude: null
+                longitude: null,
+                types: null,
+                selectedType: null
             }, 500); // close, but give 500ms for bootstrap to animate
         };
 

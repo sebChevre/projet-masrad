@@ -20,18 +20,24 @@ app.controller('MapCtrl', function (IssuesService,AuthService, NotifyService, Lo
 
     // Call the modal window
     $scope.showNewIssue = function (lat, lon) {
+         console.log("list of type=" + issuesType);
         ModalService.showModal({
             templateUrl: "templates/newIssue.html",
             controller: "ModalInstanceCtrl",
             inputs: {
                 title: "Saisie d'une nouvelle issue",
                 latitude: lat,
-                longitude: lon
+                longitude: lon,
+                types: issuesType,
+                selectedType: null
             }
         }).then(function (modal) {
             modal.element.modal();
             modal.close.then(function (result) {
-                $scope.complexResult = "Name: " + result.name + ", latitude: " + result.latitude + ", longitude:" + result.longitude;
+                $scope.complexResult = "Name: " + result.name 
+                  + ", latitude: " + result.latitude 
+                  + ", longitude:" + result.longitude
+                  + ", selectedType:" + result.selectedType;
                 if (UtilsService.isUndefinedOrNull(result) || UtilsService.isUndefinedOrNull(result.name) || UtilsService.isUndefinedOrNull(result.latitude) || UtilsService.isUndefinedOrNull(result.longitude)) {
                     console.log("Cannot insert a new Issue, the content of result isnt valid.")
                 } else {
@@ -174,8 +180,8 @@ app.controller('MapCtrl', function (IssuesService,AuthService, NotifyService, Lo
     });
 
     $rootScope.$on('issueTypeFound',function (event,issTypes){
-        console.log(issTypes);
-        issuesType = issypes;
+        console.log('issueTypeFound=' + issTypes);
+        issuesType = issTypes;
     });
 
     $scope.$on('$destroy', function() {
@@ -193,7 +199,7 @@ app.controller('MapCtrl', function (IssuesService,AuthService, NotifyService, Lo
     })
 
     $scope.$on('leafletDirectiveMap.leaflet-zone.click', function (event, args) {
-        console.log("create new issue, event=" + event);
+        console.log("create new issue, event=" + event + ", list of type=" + issuesType);
         console.log('Map clicked at coordinates [' + args.leafletEvent.latlng.lat + ', ' + args.leafletEvent.latlng.lng + ']');
         //alert('Map clicked at coordinates [' + args.leafletEvent.latlng.lat + ', ' + args.leafletEvent.latlng.lng + ']')
         $scope.showNewIssue(args.leafletEvent.latlng.lat, args.leafletEvent.latlng.lng);
