@@ -1,4 +1,4 @@
-# Comem+ MAS-RAD DFA Aungular Projet
+# Comem+ MAS-RAD DFA Angular Projet
 
 Projet de fin de CAS DFA dans le cadre du MAS-RAD.
 
