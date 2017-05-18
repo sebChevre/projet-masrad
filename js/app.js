@@ -1,12 +1,13 @@
+
 var app = angular.module('app', ['ui.router', 'angular-storage','cgNotify','ngGeolocation','leaflet-directive','angularModalService','ngAnimate']);
 
+
 app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
+
+    //ajout intercepteur http
     $httpProvider.interceptors.push('AuthInterceptor');
 
-
-
-   // $httpProvider.defaults.transformRequest.push(spinnerFunction);
-
+    //routage, page home principale
     $stateProvider
     .state('home', {
         url: '',
@@ -14,14 +15,14 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         controller: 'HomeCtrl as home'
     });
 
-    // After home state
+    // page de login
     $stateProvider.state('login', {
         url: '/login',
         templateUrl: './templates/login.html',
         controller: 'LoginCtrl as login'
     });
 
-	
+    //creation utilisateur
     $stateProvider.state('signin', {
         url: '/signin',
         templateUrl: './templates/user-detail.html',
@@ -29,6 +30,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
     });
 
+    //détail utilisateur
     $stateProvider.state('user-detail', {
         url: '/user-detail',
         templateUrl: './templates/user-detail.html',
@@ -42,6 +44,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 });
 
 app.run(function(AuthService, $rootScope, $state) {
+
     $rootScope.$on('$stateChangeStart', function(event, toState) {
         if (!AuthService.token && nonProtectedRoute(toState)) {
             event.preventDefault();

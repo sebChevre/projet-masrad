@@ -4,7 +4,7 @@
 
     <fieldset ng-disabled="login.submiting">
         <!-- login et validation -->
-        <input type="text" ng-model="login.user.name" class="form-control" name="login" placeholder="Utilisateur" required minlength="3" maxlength="25" />
+        <input type="text" tabindex="1" ng-model="login.user.name" class="form-control" name="login" placeholder="Utilisateur" required minlength="3" maxlength="25" />
         <div ng-if='loginForm.login.$dirty'>
             <div class="field-info" ng-if='loginForm.login.$error.required'>le login est obligatoire</div>
             <div class="field-info" ng-if='loginForm.login.$error.minlength'>minimum 3 caractères</div>
@@ -12,20 +12,20 @@
         </div>
 
         <!-- pass et validation -->
-        <input type="password" ng-model="login.user.password" class="form-control" name="password" placeholder="Mot de passe" required minlength="4" />
+        <input type="password" tabindex="2" ng-model="login.user.password" class="form-control" name="password" placeholder="Mot de passe" required minlength="4" />
         <div ng-if='loginForm.password.$dirty'>
             <div class="field-info" ng-if='loginForm.password.$error.required'>le mot de passe est obligatoire</div>
             <div class="field-info" ng-if='loginForm.password.$error.minlength'>minimum 4 caractères</div>
         </div>
     </fieldset>
 
-    <!-- rememebre me et create account -->
+    <!-- create account -->
     <label class="checkbox">
         <a ui-sref="signin">Crééer un compte</a>
     </label>
 
     <!-- submission button & loginStatusBox -->
-    <button class="btn btn-lg btn-primary btn-block"  type="button" ng-hide="login.submiting" ng-click="login.submit()" ng-disabled='loginForm.$invalid'> Login </button>
+    <button class="btn btn-lg btn-primary btn-block" tabindex="3" type="button" ng-hide="login.submiting" ng-click="login.submit()" ng-disabled='loginForm.$invalid'> Login </button>
     <img id="spinner" ng-src="../assets/img/ajax-loader.gif" ng-show="login.submiting">
 
 </form>

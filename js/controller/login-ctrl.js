@@ -1,19 +1,18 @@
+/**
+ * Controlleur du login
+ */
 app.controller('LoginCtrl', function (AuthService, NotifyService, LocationService, $scope, $http, $state, API_LOGIN_URL) {
 
-    $scope.init = function () {
-        console.log("scope init");
 
-    };
-
-    $scope.init();
 
 
     var login = this;
     login.user = {};
-    login.submiting = false;    //définit si le formulaire est en soumission (ajax)
+    login.submiting = false;    //définit si le formulaire est en soumission (ajax) ou edition
 
     var logged = false;
 
+    //fonction appelé lors de la soumission du login
     login.submit = function () {
 
         login.submiting = true;
@@ -25,7 +24,7 @@ app.controller('LoginCtrl', function (AuthService, NotifyService, LocationServic
         }).then(function (res) {
             AuthService.setLogged(res.data.token, res.data.user);
             NotifyService.showSucess('Connexion effectué avec succès!');
-            LocationService.setCurrentPosition();
+            //LocationService.setCurrentPosition();
             logged = true;
             $state.go('home');
         }).catch(function (error) {
@@ -36,6 +35,7 @@ app.controller('LoginCtrl', function (AuthService, NotifyService, LocationServic
 
     };
 
+    //RAZ des champs du formulaire de login
     var clearFields = function () {
         login.user = {};
         $scope.loginForm.$setPristine();  //raz validation

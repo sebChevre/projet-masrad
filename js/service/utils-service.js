@@ -3,6 +3,8 @@ app.factory('UtilsService', function() {
      isUndefinedOrNull: function(obj) {
          return !angular.isDefined(obj) || obj===null;
      }
+
+
     
   }
   

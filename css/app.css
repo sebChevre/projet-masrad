@@ -73,3 +73,61 @@ input[type="password"] {
 .btns{
     margin-top:10px;
 }
+
+#issues-section{
+    width:35%;
+}
+
+#map-section{
+    width:65%;
+}
+
+#leaflet-zone{
+    width:100%;
+    height:480px;
+}
+
+.iss-id{
+    font-size:8px;
+    font-style: italic;
+}
+
+.iss-date{
+
+}
+
+.gps_status{
+    width:10px;
+    height:10px;
+}
+
+#gps_status_lbl{
+    padding-left:20px;
+}
+
+#all-issues-loader, #my-issues-loader, #position-loader{
+    text-align: center;
+    width:20px;
+    height:20px;
+}
+
+.panel-group{
+    max-height:400px;
+    overflow-y: scroll;
+}
+
+.user-icon{
+    width:20px;
+    height:20px;
+    margin-right:10px;
+    cursor: pointer;
+}
+
+.flag-icon{
+    cursor: pointer;
+    float: right;
+}
+
+.flag-calendrier{
+    margin-left: 10px;
+}
