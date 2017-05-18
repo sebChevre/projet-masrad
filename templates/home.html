@@ -28,6 +28,26 @@
     <section class="col-md-3" ng-controller="IssuesCtrl as issues">
       <div class="list-group" ui-sref-active="active">
         <h2>List of issues</h2>
+        <ul id="issueTabs" class="nav nav-tabs" role="tablist">
+          <li id="allTabs" role="presentation" class="active" ng-click="switchTab('all')"><a href="#all">Récentes</a></li>
+          <li id="myTabs" role="presentation" ng-click="switchTab('my')"><a href="#my">Mes issues</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="all">
+            <div class="panel panel-default">
+              <div class="panel-body">
+               All
+              </div>
+            </div>
+          </div>
+
+
+
+          <div role="tabpanel" class="tab-pane" id="my">...list</div>
+        </div>
         <!-- list of issues -->
 
       </div>

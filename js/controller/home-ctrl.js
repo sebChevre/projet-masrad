@@ -5,12 +5,30 @@ app.controller('HomeCtrl',function(AuthService,NotifyService, LocationService,$s
 
     var home = this;
 
-    
+    $('#allTabs a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
+
+    $('#myTabs a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
+
+
 
     //Récupération des informations de l'utilsateur connecté
     home.username = AuthService.user.name;
     home.userRoles = AuthService.user.roles;
-    
+
+    /*$scope.switchTab = function (name) {
+
+        var tabSel = "#" + name;
+
+        console.log(tabSel);
+
+        $(tabSel).tab('show');
+    }*/
 
 
     //fonction de logout

@@ -41,7 +41,7 @@ app.controller('MapCtrl', function (AuthService, NotifyService, LocationService,
     map.center = {
         lat: LocationService.latitude,
         lng: LocationService.longitude,
-        zoom: 15
+        zoom: 18
     };
 
 
@@ -49,14 +49,24 @@ app.controller('MapCtrl', function (AuthService, NotifyService, LocationService,
         doubleClickZoom: false, // disable the double-click zoom
         scrollWheelZoom: true, // disable zooming with the scroll
         dragging: true, // disable moving the map with dragging it with the mouse
-        minZoom: 10, // Limit the minimal zoom
-        maxZoom: 16 // Limit the maximal zoom
+        minZoom: 1, // Limit the minimal zoom
+        maxZoom: 18 // Limit the maximal zoom
     };
 
 
     // Fixes the default Icon bug, see slide #10
     var defaultIcon = {
         iconUrl: "assets/leaflet/images/marker-icon.png",
+        shadowUrl: "assets/leaflet/images/marker-shadow.png",
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        tooltipAnchor: [16, -28],
+        shadowSize: [41, 41]
+    };
+
+    var trackingIcon = {
+        iconUrl: "assets/img/bluedot.gif",
         shadowUrl: "assets/leaflet/images/marker-shadow.png",
         iconSize: [25, 41],
         iconAnchor: [12, 41],
@@ -75,6 +85,17 @@ app.controller('MapCtrl', function (AuthService, NotifyService, LocationService,
         shadowAnchor: [5, 64]
     };
 
+    var currentPositionMarker = {
+        lat: LocationService.latitude,
+        lng: LocationService.longitude,
+        icon:trackingIcon,
+        draggable: false,
+        // You can add any additionnal property you want to your marker
+        // This way, we can for example add a name to identify the marker later on.
+        name: 'Current Position'
+
+
+    };
     // Defines the markers that will be added to the map.
     // Add any marker object to this array for it to appear on the map
     map.markers = [
@@ -99,6 +120,8 @@ app.controller('MapCtrl', function (AuthService, NotifyService, LocationService,
         }
     ];
 
+    map.markers.push(currentPositionMarker);
+
     // This function adds a new marker to the map.markers array
     // and, consequently, to the map
     // Calling it multiple time will add the same marker each time.
@@ -106,7 +129,7 @@ app.controller('MapCtrl', function (AuthService, NotifyService, LocationService,
         map.markers.push({
             lat: 46.779244,
             lng: 6.659402,
-            icon: myIcon,
+            icon: defaultIcon,
             name: 'HEIG-VD, Cheseaux'
         })
     }
