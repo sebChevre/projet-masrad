@@ -93,7 +93,7 @@ input[type="password"] {
 }
 
 .iss-date{
-
+    font-size:10px;
 }
 
 .gps_status{
@@ -112,7 +112,7 @@ input[type="password"] {
 }
 
 .panel-group{
-    max-height:400px;
+    max-height:380px;
     overflow-y: scroll;
 }
 

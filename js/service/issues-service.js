@@ -36,20 +36,20 @@ app.factory('IssuesService',['$http','$rootScope', function($http, $rootScope, s
             issueToSave.description = issue.name;
 
             issueToSave.createdAt = new Date().toString();
-            issueToSave.issueTypeHref = "/zduiasdiuas";
+            issueToSave.issueTypeHref = issue.selectedType;
             issueToSave.location = {};
             issueToSave.location.type = 'Point';
             issueToSave.location.coordinates = [];
-            issueToSave.location.coordinates.push(issue.latitude);
             issueToSave.location.coordinates.push(issue.longitude);
-
+            issueToSave.location.coordinates.push(issue.latitude);
             console.log(issueToSave);
 
             $http.post(url, issueToSave)
             .then(function (success) {
-                callback(success);
+                $rootScope.$emit('issueCreated');
+
             }, function (error) {
-                errorCallback(error.data);
+                consolelog(error.data);
             });
 
         },

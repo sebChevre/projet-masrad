@@ -7,8 +7,24 @@
 app.controller('MapCtrl', function (IssuesService,AuthService, NotifyService, LocationService, ModalService, UtilsService, $stateParams, $state, $scope, $rootScope, $geolocation,API_ALL_ISSUES,API_NEW_ISSUES,API_ISSUES_TYPE) {
 
     var map = this;
-
     var issuesType = [];
+    $scope.complexResult = null;
+    map.markers = [];
+
+    map.center = {
+        lat: 0,
+        lng: 0,
+        zoom: 5
+    };
+
+    map.defaults = {
+        doubleClickZoom: false,
+        scrollWheelZoom: true,
+        dragging: true,
+        minZoom: 1,
+        maxZoom: 18
+    };
+
 
     $scope.init = function () {
 
@@ -16,7 +32,7 @@ app.controller('MapCtrl', function (IssuesService,AuthService, NotifyService, Lo
         IssuesService.getIssuesType(API_ISSUES_TYPE);
     };
 
-    $scope.complexResult = null;
+
 
     // Call the modal window
     $scope.showNewIssue = function (lat, lon) {
@@ -52,22 +68,10 @@ app.controller('MapCtrl', function (IssuesService,AuthService, NotifyService, Lo
     };
 
 
-    map.center = {
-        lat: 0,
-        lng: 0,
-        zoom: 5
-    };
-
-    map.defaults = {
-        doubleClickZoom: false, // disable the double-click zoom
-        scrollWheelZoom: true, // disable zooming with the scroll
-        dragging: true, // disable moving the map with dragging it with the mouse
-        minZoom: 1, // Limit the minimal zoom
-        maxZoom: 18 // Limit the maximal zoom
-    };
 
 
-    // Fixes the default Icon bug, see slide #10
+
+    // Icone par defaut, position actuelle
     var defaultIcon = {
         iconUrl: "assets/leaflet/images/marker-icon.png",
         shadowUrl: "assets/leaflet/images/marker-shadow.png",
@@ -78,8 +82,8 @@ app.controller('MapCtrl', function (IssuesService,AuthService, NotifyService, Lo
         shadowSize: [41, 41]
     };
 
-    var trackingIcon = {
-        iconUrl: "assets/img/bluedot.gif",
+    var pointsIcon = {
+        iconUrl: "assets/img/gps_points.png",
         shadowUrl: "assets/leaflet/images/marker-shadow.png",
         iconSize: [25, 41],
         iconAnchor: [12, 41],
@@ -88,32 +92,7 @@ app.controller('MapCtrl', function (IssuesService,AuthService, NotifyService, Lo
         shadowSize: [41, 41]
     };
 
-    // Defines a custom icon
-    var myIcon = {
-        iconUrl: "images/myIcon.png",
-        iconSize: [38, 95],
-        iconAnchor: [22, 95],
-        shadowUrl: "images/myIconShadow.png",
-        shadowSize: [50, 64],
-        shadowAnchor: [5, 64]
-    };
 
-
-
-    map.markers = [];
-
-
-    // This function adds a new marker to the map.markers array
-    // and, consequently, to the map
-    // Calling it multiple time will add the same marker each time.
-    map.addMarker = function () {
-        map.markers.push({
-            lat: 46.779244,
-            lng: 6.659402,
-            icon: defaultIcon,
-            name: 'HEIG-VD, Cheseaux'
-        })
-    }
 
 
     map.addNewIssue = function (result) {
@@ -121,7 +100,7 @@ app.controller('MapCtrl', function (IssuesService,AuthService, NotifyService, Lo
             name: result.name,
             lat: result.latitude,
             lng: result.longitude,
-            icon: myIcon
+            icon: pointsIcon
         })
 
     }
@@ -131,8 +110,6 @@ app.controller('MapCtrl', function (IssuesService,AuthService, NotifyService, Lo
 
         var lat = LocationService.userPosition.coords.latitude;
         var lng = LocationService.userPosition.coords.longitude;
-
-
 
         map.markers.push({
             lat: lat,
@@ -148,21 +125,19 @@ app.controller('MapCtrl', function (IssuesService,AuthService, NotifyService, Lo
             lng: lng,
             zoom: 18
         };
-        console.log(map);
-
-
     });
 
     var showIssues = function (issue) {
 
-        console.log(issue);
-        var lat = issue.location.coordinates[0];
-        var lng = issue.location.coordinates[1];
+
+        var lng = issue.location.coordinates[0];
+        var lat = issue.location.coordinates[1];
+
 
         map.markers.push({
             lat: lat,
             lng: lng,
-            icon:defaultIcon,
+            icon:pointsIcon,
             draggable: false,
             focus:true,
             message: '<h4>' + issue.description +'</h4>'
@@ -190,21 +165,13 @@ app.controller('MapCtrl', function (IssuesService,AuthService, NotifyService, Lo
     });
 
     // Event listener to react to user clicking the map
-    $scope.$on('leafletDirectiveMap.click', function (event, args) {
-        console.log("create new issue, event=" + event);
-        console.log('Map clicked at coordinates [' + args.leafletEvent.latlng.lat + ', ' + args.leafletEvent.latlng.lng + ']');
-        //alert('Map clicked at coordinates [' + args.leafletEvent.latlng.lat + ', ' + args.leafletEvent.latlng.lng + ']')
-        $scope.showNewIssue(args.leafletEvent.latlng.lat, args.leafletEvent.latlng.lng);
-
-    })
-
     $scope.$on('leafletDirectiveMap.leaflet-zone.click', function (event, args) {
         console.log("create new issue, event=" + event + ", list of type=" + issuesType);
         console.log('Map clicked at coordinates [' + args.leafletEvent.latlng.lat + ', ' + args.leafletEvent.latlng.lng + ']');
         //alert('Map clicked at coordinates [' + args.leafletEvent.latlng.lat + ', ' + args.leafletEvent.latlng.lng + ']')
         $scope.showNewIssue(args.leafletEvent.latlng.lat, args.leafletEvent.latlng.lng);
 
-    })
+    });
 
 
 
@@ -213,7 +180,7 @@ app.controller('MapCtrl', function (IssuesService,AuthService, NotifyService, Lo
     $scope.$on('leafletDirectiveMarker.dragend', function (events, args) {
         console.log('Marker moved to coordinates [' + args.model.lat + ', ' + args.model.lng + ']');
         //alert('Marker moved to coordinates [' + args.model.lat + ', ' + args.model.lng + ']')
-    })
+    });
 
 });
 

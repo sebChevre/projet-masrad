@@ -60,6 +60,10 @@ app.controller('IssuesCtrl', function (IssuesService, $scope, $rootScope, API_AL
         $myIssuesLoader.hide();
     });
 
+    var myIssueCreatedListener = $rootScope.$on('issueCreated',function (event){
+
+        IssuesService.findMyIssues(API_MY_ISSUES);
+    });
     /* on enleve le listener pour eviter une multiplication a chaque instance */
     $scope.$on('$destroy', function() {
         console.log('[IssuesCtr] - Controller destroyed');
