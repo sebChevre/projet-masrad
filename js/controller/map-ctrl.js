@@ -4,9 +4,17 @@
 
 
 
-app.controller('MapCtrl', function (AuthService, NotifyService, LocationService, ModalService, UtilsService, $stateParams, $state, $scope, $rootScope, $geolocation) {
+app.controller('MapCtrl', function (IssuesService,AuthService, NotifyService, LocationService, ModalService, UtilsService, $stateParams, $state, $scope, $rootScope, $geolocation,API_ALL_ISSUES,API_NEW_ISSUES,API_ISSUES_TYPE) {
 
     var map = this;
+
+    var issuesType = [];
+
+    $scope.init = function () {
+
+        IssuesService.findAllIssues(API_ALL_ISSUES);
+        IssuesService.getIssuesType(API_ISSUES_TYPE);
+    };
 
     $scope.complexResult = null;
 
@@ -28,6 +36,8 @@ app.controller('MapCtrl', function (AuthService, NotifyService, LocationService,
                     console.log("Cannot insert a new Issue, the content of result isnt valid.")
                 } else {
                     map.addNewIssue(result);
+                    console.log(result);
+                    IssuesService.insertNewIssue(result,API_NEW_ISSUES);
                 }
 
             });
@@ -163,6 +173,11 @@ app.controller('MapCtrl', function (AuthService, NotifyService, LocationService,
         showIssues(issue);
     });
 
+    $rootScope.$on('issueTypeFound',function (event,issTypes){
+        console.log(issTypes);
+        issuesType = issypes;
+    });
+
     $scope.$on('$destroy', function() {
         console.log('destroy home');
         userPositionListener(); // remove listener.
@@ -178,16 +193,15 @@ app.controller('MapCtrl', function (AuthService, NotifyService, LocationService,
     })
 
     $scope.$on('leafletDirectiveMap.leaflet-zone.click', function (event, args) {
-        console.log('Map clicked at coordinates [' + args.leafletEvent.latlng.lat + ', ' + args.leafletEvent.latlng.lng + ']')
+        console.log("create new issue, event=" + event);
+        console.log('Map clicked at coordinates [' + args.leafletEvent.latlng.lat + ', ' + args.leafletEvent.latlng.lng + ']');
+        //alert('Map clicked at coordinates [' + args.leafletEvent.latlng.lat + ', ' + args.leafletEvent.latlng.lng + ']')
+        $scope.showNewIssue(args.leafletEvent.latlng.lat, args.leafletEvent.latlng.lng);
+
     })
 
 
-    // Event listener to react to user clicking a marker
-    $scope.$on('leafletDirectiveMarker.click', function (events, args) {
 
-        console.log('Marker clicked: ' + args.model.name);
-        //alert('Marker clicked: ' + args.model.name)
-    })
 
     // Event listener to react to user finishing dragging a marker
     $scope.$on('leafletDirectiveMarker.dragend', function (events, args) {
