@@ -1,19 +1,31 @@
 /*
-  Controlleur principal de l'application, hors aspect gestion utilisateurs
+ * Controlleur principal de l'application, hors aspect gestion utilisateurs
  */
-app.controller('HomeCtrl',function(AuthService,NotifyService, LocationService,$state,$scope, $geolocation) {
+app.controller('HomeCtrl',function(AuthService,NotifyService, LocationService,$state,$scope,$rootScope) {
 
     var home = this;
+    var destroyPositionFoundListener;
 
-    $('#allTabs a').click(function (e) {
-        e.preventDefault()
-        $(this).tab('show')
-    })
+    home.isGpsPositionDefined = false;
 
-    $('#myTabs a').click(function (e) {
-        e.preventDefault()
-        $(this).tab('show')
-    })
+    $scope.init = function () {
+        console.log("scope init");
+        LocationService.findUserPosition();
+    };
+
+    $scope.init();
+
+
+    var userPositionListener = $rootScope.$on('userPositionFound', function (event, args) {
+        console.log('position home-ctrl')
+        home.isGpsPositionDefined = true;
+        event.preventDefault();
+    });
+
+    $scope.$on('$destroy', function() {
+        console.log('destroy home');
+        userPositionListener(); // remove listener.
+    });
 
 
 
@@ -21,27 +33,17 @@ app.controller('HomeCtrl',function(AuthService,NotifyService, LocationService,$s
     home.username = AuthService.user.name;
     home.userRoles = AuthService.user.roles;
 
-    /*$scope.switchTab = function (name) {
-
-        var tabSel = "#" + name;
-
-        console.log(tabSel);
-
-        $(tabSel).tab('show');
-    }*/
-
 
     //fonction de logout
     home.logout = function () {
         AuthService.unsetLogged();
-        LocationService.unsetLocation();
+        //LocationService.unsetLocation();
         NotifyService.showSucess("Deconnecté avec succès");
         $state.go('login');
     };
 
     //définit si l'utilisateur à le role staff
     home.hasUserStaffRight = function () {
-
         return userRoleContainsStaff();
     };
 

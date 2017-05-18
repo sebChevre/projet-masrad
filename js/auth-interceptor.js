@@ -1,4 +1,5 @@
 app.factory('AuthInterceptor', function(AuthService) {
+
   return {
     request: function (config) {
       if (AuthService.token) {

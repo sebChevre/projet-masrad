@@ -1,10 +1,9 @@
 /**
  * Created by seb on 17.05.17.
  */
-app.component("helloWorld",{
-    templateUrl : './templates/t.html',
-    controller : 'TuTuCtrl',
-    controllerAs : 'tutu'
-
+app.component("issuesCmp",{
+    templateUrl : './templates/issues-component.html',
+    controller : 'IssuesCtrl',
+    controllerAs : 'issues'
 });
 

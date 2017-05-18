@@ -30,7 +30,7 @@ app.controller('UserSigninCtrl',function($scope, AuthService, NotifyService, $ht
             }).then(function successCallback(response) {
 
                 NotifyService.showSucess('Utilisateur créé avec succès');
-                $state.go('issues');
+                $state.go('login');
 
             }, function errorCallback(response) {
 

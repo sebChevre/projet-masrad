@@ -1,67 +1,9 @@
 <div class="home-wrapper">
-  <nav class="navbar navbar-inverse">
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="dropdown" ng-show="home.hasUserStaffRight()">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Staff <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Staff1</a></li>
-            <li><a href="#">Staff2</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Staff3</a></li>
-
-          </ul>
-        </li>
-        <li>
-          <p class="navbar-text">Connecté en tant que <a ui-sref="user-detail">{{home.username}}</a></p>
-        </li>
-        <li>
-
-        </li>
-      </ul>
-      <button id="logout-btn" type="button " class="btn btn-default navbar-btn navbar-right" ng-click="home.logout()">Déconnection</button>
-
-    </div>
-  </nav>
-  <div>
-    <section class="col-md-3" ng-controller="IssuesCtrl as issues">
-      <div class="list-group" ui-sref-active="active">
-        <h2>List of issues</h2>
-        <ul id="issueTabs" class="nav nav-tabs" role="tablist">
-          <li id="allTabs" role="presentation" class="active" ng-click="switchTab('all')"><a href="#all">Récentes</a></li>
-          <li id="myTabs" role="presentation" ng-click="switchTab('my')"><a href="#my">Mes issues</a></li>
-        </ul>
-
-        <!-- Tab panes -->
-        <div class="tab-content">
-
-          <div role="tabpanel" class="tab-pane active" id="all">
-            <div class="panel panel-default">
-              <div class="panel-body">
-               All
-              </div>
-            </div>
-          </div>
-
-
-
-          <div role="tabpanel" class="tab-pane" id="my">...list</div>
-        </div>
-        <!-- list of issues -->
-
-      </div>
-    </section>
-    <section class="col-md-9" ng-controller="MapCtrl as map">
-      <!-- map -->
-      <div ng-controller="MapCtrl as map">
-        <leaflet width="100%" height="480px" lf-center="map.center" defaults="map.defaults" markers="map.markers"></leaflet>
-        <button class="btn btn-default" ng-click="map.addMarker()">Add marker</button>
-
-      </div>
-
-    </section>
-
-  </div>
-
+    <!-- header -->
+    <header-cmp></header-cmp>
+    <!-- liste issues -->
+    <issues-cmp></issues-cmp>
+    <!-- zone de carte -->
+    <map-cmp></map-cmp>
 </div>

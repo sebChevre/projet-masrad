@@ -1,21 +1,29 @@
 /*
   Controlleur de la map de l'application
  */
-app.controller('IssuesCtrl', function (AuthService, NotifyService, LocationService, $state, $scope, $geolocation) {
-    var issues = this;
 
-    // do something with filter and request service
-});
 
-app.controller('MapCtrl', function (AuthService, NotifyService, LocationService, $stateParams, $state, $scope, $geolocation) {
+app.controller('MapCtrl', ['leafletData','$rootScope','$scope','LocationService', function (leafletData, $rootScope, $scope,LocationService) {
 
     var map = this;
-    map.center = {
-        lat: LocationService.latitude,
-        lng: LocationService.longitude,
-        zoom: 18
-    };
 
+    var mapOpb = null;
+
+    leafletData.getMap().then(function(lfMap) {
+        mapObj = lfMap;
+    });
+
+
+    var destroyPositionFoundListener;
+
+
+    //centrage sur position courante
+
+    map.center = {
+        lat: 0,
+        lng: 0,
+        zoom: 5
+    };
 
     map.defaults = {
         doubleClickZoom: false, // disable the double-click zoom
@@ -57,20 +65,12 @@ app.controller('MapCtrl', function (AuthService, NotifyService, LocationService,
         shadowAnchor: [5, 64]
     };
 
-    var currentPositionMarker = {
-        lat: LocationService.latitude,
-        lng: LocationService.longitude,
-        icon:trackingIcon,
-        draggable: false,
-        // You can add any additionnal property you want to your marker
-        // This way, we can for example add a name to identify the marker later on.
-        name: 'Current Position'
 
 
-    };
+    map.markers = [];
     // Defines the markers that will be added to the map.
     // Add any marker object to this array for it to appear on the map
-    map.markers = [
+    /*map.markers = [
         {
             lat: 46.781547,
             lng: 6.640351,
@@ -90,9 +90,9 @@ app.controller('MapCtrl', function (AuthService, NotifyService, LocationService,
             icon: defaultIcon,
             name: 'Place Pestalozzi'
         }
-    ];
+    ];*/
 
-    map.markers.push(currentPositionMarker);
+
 
     // This function adds a new marker to the map.markers array
     // and, consequently, to the map
@@ -107,13 +107,77 @@ app.controller('MapCtrl', function (AuthService, NotifyService, LocationService,
     }
 
     map.addMarker = function () {
+
         map.markers.push(currentPositionMarker)
     }
+
+
+    var userPositionListener = $rootScope.$on('userLocated', function (event, args) {
+
+        var lat = LocationService.userPosition.coords.latitude;
+        var lng = LocationService.userPosition.coords.longitude;
+
+
+
+        map.markers.push({
+            lat: lat,
+            lng: lng,
+            icon:defaultIcon,
+            draggable: false,
+            focus:true,
+            message: '<h3>Vous êtes ici...</h3>'
+        });
+
+        map.center = {
+            lat: lat,
+            lng: lng,
+            zoom: 18
+        };
+        console.log(map);
+
+
+    });
+
+    var showIssues = function (issue) {
+
+        console.log(issue);
+        var lat = issue.location.coordinates[0];
+        var lng = issue.location.coordinates[1];
+
+        map.markers.push({
+            lat: lat,
+            lng: lng,
+            icon:defaultIcon,
+            draggable: false,
+            focus:true,
+            message: '<h4>' + issue.description +'</h4>'
+        });
+
+        map.center = {
+            lat: lat,
+            lng: lng,
+            zoom: 10
+        };
+    }
+
+    $rootScope.$on('showIssuesClicked',function (event,issue){
+        showIssues(issue);
+    });
+
+    $scope.$on('$destroy', function() {
+        console.log('destroy home');
+        userPositionListener(); // remove listener.
+    });
 
     // Event listener to react to user clicking the map
     $scope.$on('leafletDirectiveMap.click', function (event, args) {
         alert('Map clicked at coordinates [' + args.leafletEvent.latlng.lat + ', ' + args.leafletEvent.latlng.lng + ']')
     })
+
+    $scope.$on('leafletDirectiveMap.leaflet-zone.click', function (event, args) {
+        console.log('Map clicked at coordinates [' + args.leafletEvent.latlng.lat + ', ' + args.leafletEvent.latlng.lng + ']')
+    })
+
 
     // Event listener to react to user clicking a marker
     $scope.$on('leafletDirectiveMarker.click', function (events, args) {
@@ -124,4 +188,4 @@ app.controller('MapCtrl', function (AuthService, NotifyService, LocationService,
     $scope.$on('leafletDirectiveMarker.dragend', function (events, args) {
         alert('Marker moved to coordinates [' + args.model.lat + ', ' + args.model.lng + ']')
     })
-});
+}]);

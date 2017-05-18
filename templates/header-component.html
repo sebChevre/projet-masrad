@@ -1,9 +1,32 @@
-<section id="map-section" class="col-md-9">
-    <!-- map -->
-    <div id="map">
-        <leaflet id="leaflet-zone" lf-center="map.center" defaults="map.defaults" markers="map.markers"></leaflet>
-        <button class="btn btn-default" ng-click="map.addMarker()">Add marker</button>
+<section id="header-section" data-ng-init="init()">
+    <!-- navbar -->
+    <nav class="navbar navbar-inverse">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="dropdown" ng-show="headerCtr.hasUserStaffRight()">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Staff
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Staff1</a></li>
+                        <li><a href="#">Staff2</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Staff3</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <p class="navbar-text">Connecté en tant que
+                        <a ui-sref="user-detail">{{headerCtrl.username}}</a>
+                        <span id="gps_status_lbl">Status GPS:</span>
 
-    </div>
+                        <img ng-show="!headerCtrl.isGpsPositionDefined()" class="gps_status" ng-src="../assets/img/red-ball-icon.png">
+                        <img ng-show="headerCtrl.isGpsPositionDefined()" class="gps_status" ng-src="../assets/img/green-ball-icon.png">
+                        <img id="position-loader" ng-src="../assets/img/green-spinner.gif"></a>
+                    </p>
+                </li>
+            </ul>
+            <button id="logout-btn" type="button " class="btn btn-default navbar-btn navbar-right" ng-click="headerCtrl.logout()">Déconnection</button>
+        </div>
+    </nav>
 
 </section>
