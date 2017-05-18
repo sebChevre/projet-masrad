@@ -6,19 +6,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Angular Auth Starter</title>
+  <title>MAR-RAD/DFA - Citizen App</title>
 
-  <!-- Third-party styles -->
+  <!-- Librairies tierces -->
   <link rel="stylesheet" href="assets/css/angular-notify.min.css">
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
-  <!-- Application styles -->
+  <!-- styles -->
   <link rel="stylesheet" href="css/app.css">
   <link rel="stylesheet" href="assets/leaflet/leaflet.css">
 </head>
 
 <body ng-app='app'>
 
+  <!-- conteneur principal -->
   <main class="container">
     <div ui-view />
   </main>
@@ -35,8 +36,9 @@
   <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
   <script type="text/javascript" src="assets/js/angular-notify.min.js"></script>
 
-  <!-- http://dwmkerr.github.io/angular-modal-service/# -->
+
   <script type="text/javascript" src="assets/js/angular-modal-service.min.js"></script>
+
 
 
 
@@ -44,7 +46,6 @@
   <script type="text/javascript" src="assets/js/angular-leaflet-directive.min.js"></script>
   <script type="text/javascript" src="assets/leaflet/leaflet.js"></script>
   <script type="text/javascript" src="assets/js/ngGeolocation.min.js"></script>
-
 
   <!-- app -->
   <script type="text/javascript" src="js/app.js"></script>
@@ -58,6 +59,8 @@
   <script type="text/javascript" src="js/controller/user-detail-ctrl.js"></script>
   <script type="text/javascript" src="js/controller/modal-ctrl.js"></script>
   <script type="text/javascript" src="js/controller/map-ctrl.js"></script>
+  <script type="text/javascript" src="js/controller/issues-ctrl.js"></script>
+  <script type="text/javascript" src="js/controller/header-ctrl.js"></script>
 
 
   <!-- services -->
@@ -65,8 +68,12 @@
   <script type="text/javascript" src="js/service/auth-service.js"></script>
   <script type="text/javascript" src="js/service/notify-service.js"></script>
   <script type="text/javascript" src="js/service/location-service.js"></script>
+  <script type="text/javascript" src="js/service/issues-service.js"></script>
 
-
+  <script type="text/javascript" src="js/component/issues-component.js"></script>
+  <script type="text/javascript" src="js/component/map-component.js"></script>
+  <script type="text/javascript" src="js/component/header-component.js"></script>
+ <!-- <script type="text/javascript" src="js/controller/tutu-ctrl.js"></script>-->
 
 </body>
 
