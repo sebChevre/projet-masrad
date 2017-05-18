@@ -1,9 +1,6 @@
 /*
   Controlleur de la map de l'application
  */
-
-
-
 app.controller('MapCtrl', function (IssuesService,AuthService, NotifyService, LocationService, ModalService, UtilsService, $stateParams, $state, $scope, $rootScope, $geolocation,API_ALL_ISSUES,API_NEW_ISSUES,API_ISSUES_TYPE) {
 
     var map = this;
@@ -25,13 +22,11 @@ app.controller('MapCtrl', function (IssuesService,AuthService, NotifyService, Lo
         maxZoom: 18
     };
 
-
     $scope.init = function () {
 
         IssuesService.findAllIssues(API_ALL_ISSUES);
         IssuesService.getIssuesType(API_ISSUES_TYPE);
     };
-
 
 
     // Call the modal window

@@ -1,10 +1,14 @@
-# Comem+ MAS-RAD DFA Angular Auth Starter
+# Comem+ MAS-RAD DFA Aungular Projet
 
-This repository contains a starter for the Citizen Engagment angular app that students will have to develop for the [MAS-RAD DFA course][masrad].
+Projet de fin de CAS DFA dans le cadre du MAS-RAD.
 
-The purpose of this starter is to kickstart the project development by providing a functionning authentication workflow, necessary to use the provided Citizen Engagment API.
+## API
+La documentation de l'API Citizen Engagement servant de back pour le travail se trouve [ici][citizenAPI] .
+Ce projet est basé sur le projet starter[MAS-RAD DFA course][masrad].
 
-The repository has two branches...
+##Améliorations
+* Affichage des issues recrées à chaque fois un marker, utiliser et réafficher l'issue présente en mémoire
+* 
 
 ## Branch `master`
 
@@ -34,3 +38,4 @@ This branch contains the complete starter code, based on the content of the `mas
 **Feel free to change file names and/or content, as you see fit.**
 
 [masrad]: https://github.com/MediaComem/comem-masrad-dfa
+[citizenAPI]: https://mediacomem.github.io/comem-citizen-engagement-api/
