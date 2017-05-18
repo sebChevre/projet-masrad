@@ -3,21 +3,38 @@
  */
 
 
-app.controller('MapCtrl', ['leafletData','$rootScope','$scope','LocationService', function (leafletData, $rootScope, $scope,LocationService) {
+
+app.controller('MapCtrl', function (AuthService, NotifyService, LocationService, ModalService, UtilsService, $stateParams, $state, $scope, $geolocation) {
 
     var map = this;
 
-    var mapOpb = null;
+    $scope.complexResult = null;
 
-    leafletData.getMap().then(function(lfMap) {
-        mapObj = lfMap;
-    });
+    // Call the modal window
+    $scope.showNewIssue = function (lat, lon) {
+        ModalService.showModal({
+            templateUrl: "templates/newIssue.html",
+            controller: "ModalInstanceCtrl",
+            inputs: {
+                title: "Saisie d'une nouvelle issue",
+                latitude: lat,
+                longitude: lon
+            }
+        }).then(function (modal) {
+            modal.element.modal();
+            modal.close.then(function (result) {
+                $scope.complexResult = "Name: " + result.name + ", latitude: " + result.latitude + ", longitude:" + result.longitude;
+                if (UtilsService.isUndefinedOrNull(result) || UtilsService.isUndefinedOrNull(result.name) || UtilsService.isUndefinedOrNull(result.latitude) || UtilsService.isUndefinedOrNull(result.longitude)) {
+                    console.log("Cannot insert a new Issue, the content of result isnt valid.")
+                } else {
+                    map.addNewIssue(result);
+                }
 
+            });
+        });
 
-    var destroyPositionFoundListener;
+    };
 
-
-    //centrage sur position courante
 
     map.center = {
         lat: 0,
@@ -106,9 +123,15 @@ app.controller('MapCtrl', ['leafletData','$rootScope','$scope','LocationService'
         })
     }
 
-    map.addMarker = function () {
 
-        map.markers.push(currentPositionMarker)
+    map.addNewIssue = function (result) {
+        map.markers.push({
+            name: result.name,
+            lat: result.latitude,
+            lng: result.longitude,
+            icon: myIcon
+        })
+
     }
 
 
@@ -171,7 +194,11 @@ app.controller('MapCtrl', ['leafletData','$rootScope','$scope','LocationService'
 
     // Event listener to react to user clicking the map
     $scope.$on('leafletDirectiveMap.click', function (event, args) {
-        alert('Map clicked at coordinates [' + args.leafletEvent.latlng.lat + ', ' + args.leafletEvent.latlng.lng + ']')
+        console.log("create new issue, event=" + event);
+        console.log('Map clicked at coordinates [' + args.leafletEvent.latlng.lat + ', ' + args.leafletEvent.latlng.lng + ']');
+        //alert('Map clicked at coordinates [' + args.leafletEvent.latlng.lat + ', ' + args.leafletEvent.latlng.lng + ']')
+        $scope.showNewIssue(args.leafletEvent.latlng.lat, args.leafletEvent.latlng.lng);
+
     })
 
     $scope.$on('leafletDirectiveMap.leaflet-zone.click', function (event, args) {
@@ -181,11 +208,17 @@ app.controller('MapCtrl', ['leafletData','$rootScope','$scope','LocationService'
 
     // Event listener to react to user clicking a marker
     $scope.$on('leafletDirectiveMarker.click', function (events, args) {
-        alert('Marker clicked: ' + args.model.name)
+
+        console.log('Marker clicked: ' + args.model.name);
+        //alert('Marker clicked: ' + args.model.name)
     })
 
     // Event listener to react to user finishing dragging a marker
     $scope.$on('leafletDirectiveMarker.dragend', function (events, args) {
-        alert('Marker moved to coordinates [' + args.model.lat + ', ' + args.model.lng + ']')
+        console.log('Marker moved to coordinates [' + args.model.lat + ', ' + args.model.lng + ']');
+        //alert('Marker moved to coordinates [' + args.model.lat + ', ' + args.model.lng + ']')
     })
+
 }]);
+
+

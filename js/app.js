@@ -1,10 +1,6 @@
-var app = angular.module('app',
-    ['ui.router',
-        'angular-storage',
-        'cgNotify',
-        'ngGeolocation',
-        'leaflet-directive']
-);
+
+var app = angular.module('app', ['ui.router', 'angular-storage','cgNotify','ngGeolocation','leaflet-directive','angularModalService','ngAnimate']);
+
 
 app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
