@@ -4,7 +4,7 @@
 
 
 
-app.controller('MapCtrl', function (AuthService, NotifyService, LocationService, ModalService, UtilsService, $stateParams, $state, $scope, $geolocation) {
+app.controller('MapCtrl', function (AuthService, NotifyService, LocationService, ModalService, UtilsService, $stateParams, $state, $scope, $rootScope, $geolocation) {
 
     var map = this;
 
@@ -85,30 +85,6 @@ app.controller('MapCtrl', function (AuthService, NotifyService, LocationService,
 
 
     map.markers = [];
-    // Defines the markers that will be added to the map.
-    // Add any marker object to this array for it to appear on the map
-    /*map.markers = [
-        {
-            lat: 46.781547,
-            lng: 6.640351,
-            icon: defaultIcon,
-            draggable: true,
-            // You can add any additionnal property you want to your marker
-            // This way, we can for example add a name to identify the marker later on.
-            name: 'Yverdon gare'
-        }, {
-            lat: 46.781058,
-            lng: 6.647179,
-            icon: defaultIcon,
-            name: 'HEIG-VD, St-Roch'
-        }, {
-            lat: 46.778246,
-            lng: 6.641490,
-            icon: defaultIcon,
-            name: 'Place Pestalozzi'
-        }
-    ];*/
-
 
 
     // This function adds a new marker to the map.markers array
@@ -219,6 +195,6 @@ app.controller('MapCtrl', function (AuthService, NotifyService, LocationService,
         //alert('Marker moved to coordinates [' + args.model.lat + ', ' + args.model.lng + ']')
     })
 
-}]);
+});
 
 
