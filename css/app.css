@@ -2,6 +2,10 @@ body {
     background: #eee !important;
 }
 
+.container {
+    width: 100%;
+}
+
 main {
   margin: 0px 0;
 }
@@ -12,8 +16,8 @@ main {
 }
 
 .home-wrapper {
-    margin-right: 20px;
-    margin-left: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .form-signin {
