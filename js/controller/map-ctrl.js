@@ -49,7 +49,7 @@ app.controller('MapCtrl', function (IssuesService,AuthService, NotifyService, Lo
                   + ", latitude: " + result.latitude 
                   + ", longitude:" + result.longitude
                   + ", selectedType:" + result.selectedType;
-                if (UtilsService.isUndefinedOrNull(result) || UtilsService.isUndefinedOrNull(result.name) || UtilsService.isUndefinedOrNull(result.latitude) || UtilsService.isUndefinedOrNull(result.longitude)) {
+                if (UtilsService.isUndefinedOrNull(result) || UtilsService.isUndefinedOrNull(result.name) || UtilsService.isUndefinedOrNull(result.latitude) || UtilsService.isUndefinedOrNull(result.longitude) || UtilsService.isUndefinedOrNull(result.selectedType)) {
                     console.log("Cannot insert a new Issue, the content of result isnt valid.")
                 } else {
                     map.addNewIssue(result);
