@@ -9,7 +9,8 @@
       <li id="myIssuesTabs" role="presentation" ng-click="switchTab('my')">
         <a href="#my">Mes issues
           <img id="my-issues-loader" ng-src="../assets/img/spinner.gif"></a>
-        </a></li>
+        </a>
+      </li>
     </ul>
 
 
@@ -18,68 +19,67 @@
 
       <!-- panneaux all recent issues -->
       <div role="tabpanel" class="tab-pane active" id="all">
-
         <div id="allIssuesZone" class="panel-group">
-
-
           <div ng-repeat="is in issues.all" class="issues-panel panel panel-info">
-            <div class="panel-heading">
-
-              <span class="iss-creator-name">
+            <div class="panel-heading row">
+              <div class="col-md-3">
+                <span class="iss-creator-name">
                 <img class="user-icon" ng-src="../assets/img/user.png">{{is.creator.name}}
               </span>
-
-              <span class="flag-calendrier">
+              </div>
+              <div class="col-md-5">
+                <span class="flag-calendrier">
                 <img class="user-icon" ng-src="../assets/img/calendrier.png">
               </span>
-
-              <span class="iss-date">{{is.createdAt | date:'medium'}}</span>
-
-              <span class="flag-icon glyphicon glyphicon-flag" ng-click="issues.test(this)"></span>
-
-
-
+                <span class="iss-date">{{is.createdAt | date:"dd.MM.yyyy 'at' HH:mm"}}</span>
+              </div>
+              <div class="col-md-3">
+                Status: <span class="iss-state">{{is.state}}</span>
+              </div>
+              <div class="col-md-1">
+                <span class="flag-icon glyphicon glyphicon-flag" ng-click="issues.test(this)"></span>
+              </div>
             </div>
             <div class="panel-body">
-
               {{is.description}}
             </div>
           </div>
-
         </div>
-
       </div>
 
       <!-- panneaux my issues -->
-      <div role="tabpanel" class="tab-pane" id="my"></div>
+      <div role="tabpanel" class="tab-pane" id="my">
+      </div>
       <div class="panel-group">
 
         <div ng-repeat="is in issues.my" class="panel panel-info">
-          <div class="panel-heading">
-
+          <div class="panel-heading row">
+            <div class="col-md-3">
               <span class="iss-creator-name">
-                <img class="user-icon" ng-src="../assets/img/user.png">{{is.creator.name}}
+                <img class="user-icon" ng-src="../assets/img/user.png"  />{{is.creator.name}}
               </span>
 
-            <span class="flag-calendrier">
+            </div>
+            <div class="col-md-5">
+              <span class="flag-calendrier">
                 <img class="user-icon" ng-src="../assets/img/calendrier.png">
               </span>
-
-            <span class="iss-date">{{is.createdAt | date:'medium'}}</span>
-
-            <span class="flag-icon glyphicon glyphicon-flag" ng-click="issues.test(this)"></span>
-
-
-
+              <span class="iss-date">{{is.createdAt | date:"dd.MM.yyyy 'at' HH:mm"}}</span>
+            </div>
+            <div class="col-md-3">
+              Status: <span class="iss-state">{{is.state}}</span>
+            </div>
+            <div class="col-md-1">
+              <span class="flag-icon glyphicon glyphicon-flag" ng-click="issues.test(this)"></span>
+            </div>
           </div>
           <div class="panel-body">
-
             {{is.description}}
           </div>
         </div>
 
       </div>
-      </div>
+    </div>
   </div>
 
 </section>

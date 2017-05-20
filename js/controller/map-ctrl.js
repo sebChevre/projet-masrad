@@ -83,12 +83,22 @@ app.controller('MapCtrl', function (IssuesService, AuthService, NotifyService, L
     };
 
     map.addNewIssue = function (result) {
+        var latitude = result.latitude;
+        var longitude = result.longitude;
+
         map.markers.push({
             name: result.name,
-            lat: result.latitude,
-            lng: result.longitude,
-            icon: pointsIcon
+            lat: latitude,
+            lng: longitude,
+            icon: pointsIcon,
         })
+
+        map.center = {
+            lat: latitude,
+            lng: longitude,
+            zoom: currentZoom
+        };
+        
     }
 
 
@@ -104,7 +114,7 @@ app.controller('MapCtrl', function (IssuesService, AuthService, NotifyService, L
             draggable: false,
             focus: true,
             zoom: currentZoom,
-            message: '<h3>Vous êtes ici...</h3>'
+            message: '<h3>Vous êtes ici...</h3>',
         });
 
         map.center = {
@@ -124,7 +134,7 @@ app.controller('MapCtrl', function (IssuesService, AuthService, NotifyService, L
             icon: pointsIcon,
             draggable: false,
             focus: true,
-            message: '<h4>' + issue.description + '</h4>'
+            message: '<h4>' + issue.description + '</h4>',
         });
 
         map.center = {
