@@ -19,9 +19,11 @@ Le schéma ci-dessous affiche le schéma de navigation entre les différentes pa
 ![alt text](https://www.lucidchart.com/publicSegments/view/9da34466-0498-4301-9069-7fe9c403b53c/image.png)
 
 ## Approche orientée événements
+La communication entre les différents service et controlleurs, et entre les controlleurs eux-même est basé sur une approche événementielle. Les événements sont émis dans le rootScope, et souscrit par les composants en ayant besoins. Ci dessous la liste des événements utilisées ainsi que les composants les utlisant: 
+
 | Evénement     | Emmeteur      |Souscribeurs |Remarques                  |
 | ------------- | ------------- |-------------|---------------------------|
-| Content Cell  | Content Cell  |
+| userLocated  | LocationService  |
 | Content Cell  | Content Cell  |
 
 
