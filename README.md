@@ -23,7 +23,8 @@ La communication entre les différents service et controlleurs, et entre les con
 
 | Evénement     | Emmeteur      |Souscribeurs |Remarques                  |
 | ------------- | ------------- |-------------|---------------------------|
-| userLocated  | LocationService  |
+| userLocated - position de l'utilisateur détectée  | LocationService  |MapController|Utilisé pour afficher la position de l'utilisateur|
+|               |               |HeaderController|Affiche l'état de détection de la position dans la barre de navigation|  
 | Content Cell  | Content Cell  |
 
 
