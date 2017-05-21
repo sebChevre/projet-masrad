@@ -5,7 +5,7 @@ Réalisation:
 * Grégoire Blanc
 * Sébastien Chèvre
 
-## Strcuture générale de l'application
+## Struture générale de l'application
 La structure générale de l'application est schématisée ci-dessous:
 ![alt text](https://www.lucidchart.com/publicSegments/view/bf89edad-1845-4da2-a514-6ec719cd9437/image.png)
 
