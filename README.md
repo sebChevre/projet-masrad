@@ -1,6 +1,13 @@
 # Projet MAS-RAD DFA Angular Projet
 
 Projet de fin de CAS DFA dans le cadre du MAS-RAD.
+Réalisation:
+* Grégoire Blanc
+* Sébastien Chèvre
+
+** Strcuture générale de l'application
+La strcuture générale de l'application est schématisée ci-dessous:
+![alt text](https://www.lucidchart.com/publicSegments/view/bf89edad-1845-4da2-a514-6ec719cd9437/image.png)
 
 ## API
 La documentation de l'API Citizen Engagement servant de back pour le travail se trouve [ici][citizenAPI] .
