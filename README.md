@@ -10,9 +10,9 @@ Le projet stater de base se trouve ici...
 ##Améliorations
 * Affichage des issues recrées à chaque fois un marker, utiliser et réafficher l'issue présente en mémoire
 * 
-![alt text](https://www.lucidchart.com/publicSegments/view/5e8d338b-12e4-43ff-a060-70535222af49/image.png)
 
-##Navigation
+
+## Navigation
 Le schéma ci-dessous affiche le schéma de navigation entre les différentes pages:
 ![alt text](https://www.lucidchart.com/publicSegments/view/9da34466-0498-4301-9069-7fe9c403b53c/image.png)
 
