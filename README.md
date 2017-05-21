@@ -23,9 +23,10 @@ La communication entre les différents service et controlleurs, et entre les con
 
 | Evénement     | Emmeteur      |Souscribeurs |Remarques                  |
 | ------------- | ------------- |-------------|---------------------------|
-| userLocated - position de l'utilisateur détectée  | LocationService  |MapController|Utilisé pour afficher la position de l'utilisateur|
+| **userLocated** - position de l'utilisateur détectée  | LocationService  |MapController|Utilisé pour afficher la position de l'utilisateur|
 |               |               |HeaderController|Affiche l'état de détection de la position dans la barre de navigation|  
-| Content Cell  | Content Cell  |
+| **allIssuesFound** - issues "récente" récupérés  | IssuesService  |IssueController|Utilisé pour afficher les issues à l'initialisation|
+|**myIssuesFound** - issues de l'utilisateur récupérés |IssuesService|IssueController|Utilisé pour afficher les issues à l'initialisation|
 
 
 
