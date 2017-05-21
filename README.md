@@ -5,16 +5,16 @@ Réalisation:
 * Grégoire Blanc
 * Sébastien Chèvre
 
-### Généralités
+## Généralités
 La documentation de l'API Citizen Engagement servant de back pour le travail se trouve [ici][citizenAPI] .
 Ce projet est basé sur le cours dispensé dans le cadre du [MAS-RAD DFA][masrad].
 
 
-### Struture générale de l'application
+## Struture générale de l'application
 La structure générale de l'application est schématisée ci-dessous:
 ![alt text](https://www.lucidchart.com/publicSegments/view/bf89edad-1845-4da2-a514-6ec719cd9437/image.png)
 
-## Navigation
+### Navigation
 Le schéma ci-dessous affiche le schéma de navigation entre les différentes pages:
 ![alt text](https://www.lucidchart.com/publicSegments/view/9da34466-0498-4301-9069-7fe9c403b53c/image.png)
 
