@@ -10,6 +10,8 @@ Le projet stater de base se trouve ici...
 ##Améliorations
 * Affichage des issues recrées à chaque fois un marker, utiliser et réafficher l'issue présente en mémoire
 * 
+![alt text](https://www.lucidchart.com/publicSegments/view/5e8d338b-12e4-43ff-a060-70535222af49/image.png)
+
 
 
 **Feel free to change file names and/or content, as you see fit.**
