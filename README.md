@@ -30,6 +30,7 @@ La communication entre les différents service et controlleurs, et entre les con
 |**Issue created** - sauvegarde de l'issue effectuée|IssueService|IssueController|Utilisé pour effectuer la sauvegarde de l'issues|
 |**issueTypeFound** - type d'issue récupérés|IssueService|MapController|Utilisé dans le formulaire de saisie d'une nouvelle issue|
 |**showIssueClicked** - clic sur le bouton d'affichage d'une issue dans la carte|IssuesController|MapController|Affichage de l'issue sur le clic|
+
 Le schéma ci-dessous illustre les communications événementielles:
 ![alt_text](https://www.lucidchart.com/publicSegments/view/4d684cf2-6382-4a38-8423-b2197f54b7f4/image.png)
 
