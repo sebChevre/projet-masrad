@@ -27,7 +27,9 @@ La communication entre les différents service et controlleurs, et entre les con
 |               |               |HeaderController|Affiche l'état de détection de la position dans la barre de navigation|  
 | **allIssuesFound** - issues "récente" récupérés  | IssuesService  |IssueController|Utilisé pour afficher les issues à l'initialisation|
 |**myIssuesFound** - issues de l'utilisateur récupérés |IssuesService|IssueController|Utilisé pour afficher les issues à l'initialisation|
-
+|**Issue created** - sauvegarde de l'issue effectuée|IssueService|IssueController|Utilisé pour effectuer la sauvegarde de l'issues|
+|**issueTypeFound** - type d'issue récupérés|IssueService|MapController|Utilisé dans le formulaire de saisie d'une nouvelle issue|
+|**showIssueClicked** - clic sur le bouton d'affichage d'une issue dans la carte|IssuesController|MapController|Affichage de l'issue sur le clic|
 
 
 
