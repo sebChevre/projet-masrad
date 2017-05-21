@@ -29,7 +29,7 @@ app.controller('HomeCtrl',function(AuthService,NotifyService, LocationService,$s
 
 
 
-    //Récupération des informations de l'utilsateur connecté
+    //Récupération des informations de l'utilisateur connecté
     home.username = AuthService.user.name;
     home.userRoles = AuthService.user.roles;
 

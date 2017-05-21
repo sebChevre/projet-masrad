@@ -6,4 +6,6 @@ app.constant('API_ALL_ISSUES', API_BASE_URI + '/issues?include=creator');
 app.constant('API_MY_ISSUES', API_BASE_URI + '/me/issues?include=creator');
 app.constant('API_NEW_ISSUES', API_BASE_URI + '/issues');
 app.constant('API_ISSUES_TYPE', API_BASE_URI + '/issueTypes');
+app.constant('API_BY_LOCATION', API_BASE_URI + '/issues/searches?include=creator');
+
 

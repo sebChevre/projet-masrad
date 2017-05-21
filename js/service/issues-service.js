@@ -1,37 +1,52 @@
-app.factory('IssuesService',['$http','$rootScope', function($http, $rootScope, store, UtilsService) {
+app.factory('IssuesService', ['$http', '$rootScope', function ($http, $rootScope, store, UtilsService) {
+
+    var url = null;
+    var longitude = null;
+    var latitude = null;
+    var radius = null;
+
+    function fetchAllItems(page, items) {
+        page = page || 1; // Start from page 1
+        items = items || [];
+        // GET the current page
+        return $http({
+            url: url,
+            params: {
+                page: page,
+                pageSize: 50
+            }
+        }).then(function (res) {
+            if (res.data.length) {
+                // If there are any items, add them
+                // and recursively fetch the next page
+                items = items.concat(res.data);
+                return fetchAllItems(page + 1, items);
+            }
+            return items;
+        }).catch(function (error) {
+            console.log('[IssuesService] - findAllIssues error');
+            console.log(error); //tableau vide
+            $rootScope.$emit('allIssuesFound', []);
+        });
+    }
 
     var service = {
 
-        findAllIssues: function (url) {
-            console.log('[IssuesService] - finAllIssues');
-            $http({
-                method: 'GET',
-                url: url
-            }).then(function (res) {
-                console.log('[IssuesService] - finAllIssues found');
-                console.log(res);
-                $rootScope.$emit('allIssuesFound',res.data);
-            }).catch(function (error) {
-                console.log('[IssuesService] - finAllIssues error');
-                console.log(error); //tableau vide
-                $rootScope.$emit('allIssuesFound',[]);
+        findAllIssues: function (lru) {
+            url = lru;
+            console.log('[IssuesService] - findAllIssues with pagination');
+            fetchAllItems().then(function (allItems) {
+                $rootScope.$emit('allIssuesFound', allItems);
             });
         },
-        findMyIssues: function (url) {
-            $http({
-                method: 'GET',
-                url: url
-            }).then(function (res) {
-                console.log('[IssuesService] - finMyIssues found');
-                console.log(res);
-                $rootScope.$emit('myIssuesFound',res.data);
-            }).catch(function (error) {
-                console.log('[IssuesService] - findMyIssues error');
-                console.log(error); //tableau vide
-                $rootScope.$emit('myIssuesFound',[]);
+        findMyIssues: function (lru) {
+            url = lru;
+            console.log('[IssuesService] - finMyIssues with pagination found');
+            fetchAllItems().then(function (allItems) {
+                $rootScope.$emit('myIssuesFound', allItems);
             });
         },
-        insertNewIssue: function (issue,url){
+        insertNewIssue: function (issue, url) {
             var issueToSave = {};
             issueToSave.description = issue.name;
 
@@ -45,12 +60,12 @@ app.factory('IssuesService',['$http','$rootScope', function($http, $rootScope, s
             console.log(issueToSave);
 
             $http.post(url, issueToSave)
-            .then(function (success) {
-                $rootScope.$emit('issueCreated');
+                .then(function (success) {
+                    $rootScope.$emit('issueCreated');
 
-            }, function (error) {
-                consolelog(error.data);
-            });
+                }, function (error) {
+                    consolelog(error.data);
+                });
 
         },
         getIssuesType: function (url) {
@@ -60,15 +75,14 @@ app.factory('IssuesService',['$http','$rootScope', function($http, $rootScope, s
             }).then(function (res) {
                 console.log('[IssuesService] - findIssuesType found');
                 console.log(res);
-                $rootScope.$emit('issueTypeFound',res.data);
+                $rootScope.$emit('issueTypeFound', res.data);
             }).catch(function (error) {
                 console.log('[IssuesService] - findIssuesType error');
                 console.log(error); //tableau vide
-                $rootScope.$emit('issueTypeFound',[]);
+                $rootScope.$emit('issueTypeFound', []);
             });
         }
     };
-
 
     return service;
 }]);

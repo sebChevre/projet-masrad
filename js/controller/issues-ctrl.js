@@ -9,12 +9,11 @@ app.controller('IssuesCtrl', function (IssuesService, $scope, $rootScope, API_AL
 
         var tabName = (e.currentTarget.hash);
 
-        if(tabName === '#my'){
-
+        if (tabName === '#my') {
             IssuesService.findMyIssues(API_MY_ISSUES);
             $myIssuesLoader.show();
             $allIssuesLoader.hide();
-        }else{
+        } else {
             //$('.issues-panel').remove();
             IssuesService.findAllIssues(API_ALL_ISSUES);
             $allIssuesLoader.show();
@@ -31,13 +30,12 @@ app.controller('IssuesCtrl', function (IssuesService, $scope, $rootScope, API_AL
 
         console.log(who.is.location.coordinates[0]);
 
-        $rootScope.$emit('showIssuesClicked',who.is);
+        $rootScope.$emit('showIssuesClicked', who.is);
 
     }
 
     issues.all = [];
     issues.my = [];
-
 
     $scope.init = function () {
         $('#my-issues-loader').hide();
@@ -48,7 +46,7 @@ app.controller('IssuesCtrl', function (IssuesService, $scope, $rootScope, API_AL
     /* ecoute de l'événement emis par le service de recherche des issues - all */
     var allIssuesListener = $rootScope.$on('allIssuesFound', function (event, args) {
         console.log('[IssuesCtr] - All issues received');
-        issues.my=[];
+        issues.my = [];
         issues.all = args;
         $allIssuesLoader.hide();
     });
@@ -60,15 +58,17 @@ app.controller('IssuesCtrl', function (IssuesService, $scope, $rootScope, API_AL
         $myIssuesLoader.hide();
     });
 
-    var myIssueCreatedListener = $rootScope.$on('issueCreated',function (event){
+    var myIssueCreatedListener = $rootScope.$on('issueCreated', function (event) {
 
         IssuesService.findMyIssues(API_MY_ISSUES);
     });
+    
     /* on enleve le listener pour eviter une multiplication a chaque instance */
-    $scope.$on('$destroy', function() {
+    $scope.$on('$destroy', function () {
         console.log('[IssuesCtr] - Controller destroyed');
         myIssuesListener();
         allIssuesListener();// on enleve le listener.
+
     });
 
 });

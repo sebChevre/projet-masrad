@@ -6,6 +6,8 @@ app.controller('MapCtrl', function (IssuesService, AuthService, NotifyService, L
     var map = this;
     var issuesType = [];
     var currentZoom = 17;
+    var allIissues = [];
+    
     $scope.complexResult = null;
     map.markers = [];
 
@@ -14,6 +16,10 @@ app.controller('MapCtrl', function (IssuesService, AuthService, NotifyService, L
         lng: 0,
         zoom: currentZoom
     };
+
+    map.controls = {
+        scale: true
+    }
 
     map.defaults = {
         doubleClickZoom: false,
@@ -24,7 +30,7 @@ app.controller('MapCtrl', function (IssuesService, AuthService, NotifyService, L
     };
 
     $scope.init = function () {
-
+        console.log('[MapCtr] - Start $scope.init');
         IssuesService.findAllIssues(API_ALL_ISSUES);
         IssuesService.getIssuesType(API_ISSUES_TYPE);
     };
@@ -91,6 +97,7 @@ app.controller('MapCtrl', function (IssuesService, AuthService, NotifyService, L
             lat: latitude,
             lng: longitude,
             icon: pointsIcon,
+            message: result.name
         })
 
         map.center = {
@@ -98,9 +105,19 @@ app.controller('MapCtrl', function (IssuesService, AuthService, NotifyService, L
             lng: longitude,
             zoom: currentZoom
         };
-        
+
     }
 
+    /* ecoute de l'événement emis par le service de recherche des issues - all */
+    var allIssuesListener = $rootScope.$on('allIssuesFound', function (event, args) {
+        console.log('[MapCtr] - All issues received');
+        allIissues = args;
+        if (!UtilsService.isUndefinedOrNull(allIissues)) {
+            for (i = 0; i < allIissues.length; i++) {
+                showIssuesWithoutCenter(allIissues[i]);
+            }
+        }
+    });
 
     var userPositionListener = $rootScope.$on('userLocated', function (event, args) {
 
@@ -114,7 +131,7 @@ app.controller('MapCtrl', function (IssuesService, AuthService, NotifyService, L
             draggable: false,
             focus: true,
             zoom: currentZoom,
-            message: '<h3>Vous êtes ici...</h3>',
+            message: '<h3>Vous êtes ici...</h3>'
         });
 
         map.center = {
@@ -123,6 +140,20 @@ app.controller('MapCtrl', function (IssuesService, AuthService, NotifyService, L
             zoom: currentZoom
         };
     });
+
+    var showIssuesWithoutCenter = function (issue) {
+        var lng = issue.location.coordinates[0];
+        var lat = issue.location.coordinates[1];
+
+        map.markers.push({
+            lat: lat,
+            lng: lng,
+            icon: pointsIcon,
+            draggable: false,
+            focus: false,
+            message: issue.description
+        });
+    }
 
     var showIssues = function (issue) {
         var lng = issue.location.coordinates[0];
@@ -134,7 +165,7 @@ app.controller('MapCtrl', function (IssuesService, AuthService, NotifyService, L
             icon: pointsIcon,
             draggable: false,
             focus: true,
-            message: '<h4>' + issue.description + '</h4>',
+            message: '<h4>' + issue.description + '</h4>'
         });
 
         map.center = {
@@ -178,18 +209,6 @@ app.controller('MapCtrl', function (IssuesService, AuthService, NotifyService, L
         console.log('Zoom Changed [args=' + map.center.zoom + ']');
         currentZoom = map.center.zoom;
     });
-
-   /*
-    function objToString(obj) {
-        var str = '';
-        for (var p in obj) {
-            if (obj.hasOwnProperty(p)) {
-                str += p + '::' + obj[p] + '\n';
-            }
-        }
-        return str;
-    }
-    */
 
 });
 
