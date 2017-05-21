@@ -18,7 +18,11 @@ La structure générale de l'application est schématisée ci-dessous:
 Le schéma ci-dessous affiche le schéma de navigation entre les différentes pages:
 ![alt text](https://www.lucidchart.com/publicSegments/view/9da34466-0498-4301-9069-7fe9c403b53c/image.png)
 
-
+## Approche orientée événements
+| Evénement     | Emmeteur      |Souscribeurs |Remarques                  |
+| ------------- | ------------- |-------------|---------------------------|
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
 
 
 
