@@ -12,6 +12,9 @@ Le projet stater de base se trouve ici...
 * 
 ![alt text](https://www.lucidchart.com/publicSegments/view/5e8d338b-12e4-43ff-a060-70535222af49/image.png)
 
+##Navigation
+Le schéma ci-dessous affiche le schéma de navigation entre les différentes pages:
+![alt text](https://www.lucidchart.com/publicSegments/view/9da34466-0498-4301-9069-7fe9c403b53c/image.png)
 
 
 **Feel free to change file names and/or content, as you see fit.**
