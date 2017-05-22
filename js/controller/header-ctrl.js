@@ -1,3 +1,7 @@
+/*
+ * Controlleur pour la barre de navigation
+ */
+app.co
 app.controller('HeaderCtrl',function(AuthService,NotifyService,LocationService,$state,$scope,$rootScope) {
 
     var header = this;
@@ -25,7 +29,7 @@ app.controller('HeaderCtrl',function(AuthService,NotifyService,LocationService,$
     /* fonction de logout */
     header.logout = function () {
         AuthService.unsetLogged();
-        NotifyService.showSucess("Deconnecté avec succès");
+        NotifyService.showSucess("Déconnecté avec succès");
         $state.go('login');
     };
 

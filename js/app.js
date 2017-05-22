@@ -61,13 +61,24 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 app.run(function(AuthService, $rootScope, $state) {
 
     $rootScope.$on('$stateChangeStart', function(event, toState) {
+        //si pas connecté et url différente des routes non protégées --> login
         if (!AuthService.token && nonProtectedRoute(toState)) {
             event.preventDefault();
             $state.go('login');
+        }
+        //access zone staff
+        if(AuthService.token && staffRoutes(toState) && !AuthService.isStaff()){
+            $state.go('home');
         }
     });
 
     var nonProtectedRoute = function (toState) {
         return toState.name !== 'login' && toState.name !== 'signin';
-    }
+    };
+
+    var staffRoutes = function (toState) {
+        return toState.name === 'users' || toState.name === 'types';
+    };
+
+
 });

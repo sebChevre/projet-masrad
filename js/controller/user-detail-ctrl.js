@@ -1,3 +1,7 @@
+/*
+ * Controlleur pour la gestion de la page de détail des utilisateurs, et également pour la saisie d'un nouvel utilisateur
+ */
+app.co
 app.controller('UserDetailCtrl',function($state,$http,$scope,AuthService,NotifyService,API_USER_URL) {
 
     var userDetail = this;

@@ -4,9 +4,7 @@ app.factory('UtilsService', function() {
          return !angular.isDefined(obj) || obj===null;
      }
 
-
-    
-  }
+  };
   
   return service;
 });
