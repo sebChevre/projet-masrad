@@ -65,7 +65,7 @@ Lors de la conneion à l'application, si l'utilisateur a les droits **staff** le
 
 # Execution de l'application
 L'application peut être exécuté sur n'importe quel serveur http. La manière la plus simple est d'utiliser le module npm live-server. La commande suivante démarre l'application via ce module:
-```live-server
+```live-server```
 
 [masrad]: https://github.com/MediaComem/comem-masrad-dfa
 [citizenAPI]: https://mediacomem.github.io/comem-citizen-engagement-api/
