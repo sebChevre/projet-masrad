@@ -1,0 +1,45 @@
+<section class="col-md-12" data-ng-init="init()">
+
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+            <div>
+                <img id="all-users-loaded" ng-src="../assets/img/spinner.gif">
+            </div>
+
+            <h2>List of users</h2>
+            <!-- panneaux all recent issues -->
+            <table class="table table-striped ">
+                <thead>
+                    <th>Name</th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Phone</th>
+                    <th>Roles</th>
+                    <th>Yet in staff?</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="user in users.all">
+                        <td>{{user.name}}</td>
+                        <td>{{user.firstname}}</td>
+                        <td>{{user.lastname}}</td>
+                        <td>{{user.phone}}</td>
+                        <td>{{user.roles}}</td>
+                        <td>
+                            <span ng-show="user.instaff">{{user.instaff}}</span>
+                            <span ng-show="!user.instaff">
+                               <button type="button" class="btn btn-danger btn-sm" ng-click="users.addInStaff(user)">Add</button>
+                            </span>
+
+                            <!--<span ng-show="!user.instaff" class="label label-danger" ng-click="users.addInStaff(this)">Add</span>   -->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-2">
+        </div>
+
+    </div>
+</section>

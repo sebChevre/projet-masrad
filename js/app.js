@@ -38,6 +38,21 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
     });
 
+    //détail utilisateur
+    $stateProvider.state('users', {
+        url: '/users',
+        templateUrl: './templates/users.html',
+        controller: 'UsersCtrl as users'
+
+    });
+
+    //détail types
+    $stateProvider.state('types', {
+        url: '/types',
+        templateUrl: './templates/types.html',
+        controller: 'TypesCtrl as types'
+    });
+
     $urlRouterProvider.otherwise(function($injector) {
         $injector.get('$state').go('home');
     });
