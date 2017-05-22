@@ -51,9 +51,9 @@ Le processus d'authentification se déroule selon les étapes suivantes:
 
 ## Geston des rôles
 L'application gère deux rôle différents:
-* **citizen** : droit standard permettant de consulter, afficher et crééer des issues
-* **staff** : droit d'administration permettant de gérer les droits utilisateurs et les types d'issues
-Les routes **users** et **types** sont réservés aux utilisateurs ayant le rôle **staff**.
+* **citizen** : droit standard permettant de consulter, afficher et crééer des issues.
+* **staff** : droit d'administration permettant de gérer les droits utilisateurs et les types d'issues.
+  Les routes **users** et **types** sont réservés aux utilisateurs ayant le rôle **staff**.
 Lors de la conneion à l'application, si l'utilisateur a les droits **staff** le menu staff permetant l'accès aux deux routes décrites ci-dessus est disponible:
 ![Menu Staff](https://www.lucidchart.com/publicSegments/view/cbdb2045-3ad0-400e-ad19-9207d14897d0/image.png)
 
@@ -61,9 +61,9 @@ Lors de la conneion à l'application, si l'utilisateur a les droits **staff** le
 ## Améliorations
 * Affichage des issues recrées à chaque fois un marker, utiliser et réafficher l'issue présente en mémoire
 * Implémenter un système de delivery de l'application (WebPack, npm, ...)
+* Implémenter des tests unitaires et comportementaux
 
-**Feel free to change file names and/or content, as you see fit.**
+
 
 [masrad]: https://github.com/MediaComem/comem-masrad-dfa
 [citizenAPI]: https://mediacomem.github.io/comem-citizen-engagement-api/
-[starterProject]: 
