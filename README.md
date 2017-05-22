@@ -6,7 +6,7 @@ Réalisation:
 * Sébastien Chèvre
 
 ## Généralités
-La documentation de l'API Citizen Engagement servant de back pour le travail se trouve [ici][citizenAPI] .
+La documentation de l'API Citizen Engagement servant de back pour le travail se trouve [ici][citizenAPI].
 Ce projet est basé sur le cours dispensé dans le cadre du [MAS-RAD DFA][masrad].
 
 
