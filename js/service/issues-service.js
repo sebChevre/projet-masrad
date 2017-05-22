@@ -81,6 +81,18 @@ app.factory('IssuesService', ['$http', '$rootScope', function ($http, $rootScope
                 console.log(error); //tableau vide
                 $rootScope.$emit('issueTypeFound', []);
             });
+        },
+        addIssuesType: function (url, name, description) {
+            var issueTypeToSave = {};
+            issueTypeToSave.name = name;
+            issueTypeToSave.description = description;
+            $http.post(url, issueTypeToSave)
+                .then(function (res) {
+                    $rootScope.$emit('issueTypeCreated', res.data);
+                }, function (error) {
+                    $rootScope.$emit('issueTypeCreated', []);
+                    consolelog(error.data);
+                });
         }
     };
 
