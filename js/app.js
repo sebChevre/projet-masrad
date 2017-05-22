@@ -38,6 +38,14 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
     });
 
+    //détail utilisateur
+    $stateProvider.state('users', {
+        url: '/users',
+        templateUrl: './templates/users.html',
+        controller: 'UsersCtrl as users'
+
+    });
+
     $urlRouterProvider.otherwise(function($injector) {
         $injector.get('$state').go('home');
     });

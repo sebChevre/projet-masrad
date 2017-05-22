@@ -3,15 +3,18 @@
     <nav class="navbar navbar-inverse">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
+                <li>
+                    <p class="navbar-text">
+                        <a ui-sref="home">Home</a>
+                    </p>
+                </li>
                 <li class="dropdown" ng-show="headerCtrl.hasUserStaffRight()">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Staff
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Staff1</a></li>
-                        <li><a href="#">Staff2</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Staff3</a></li>
+                        <li><a ui-sref="users">Users</a></li>
+                        <li><a ui-sref="types">Type</a></li>
                     </ul>
                 </li>
                 <li>
