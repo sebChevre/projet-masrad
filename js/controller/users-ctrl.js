@@ -1,7 +1,6 @@
 /*
  * Controlleur pour la gestion des droits utilisateurs
  */
-app.co
 app.controller('UsersCtrl', function (UsersService, $scope, $rootScope, API_USER_URL) {
     var users = this;
     users.all = [];
