@@ -1,7 +1,6 @@
 /*
  * Controlleur pour la gestion de la liste des issues
  */
-app.co
 app.controller('IssuesCtrl', function (IssuesService, $scope, $rootScope, API_ALL_ISSUES, API_MY_ISSUES) {
 
     var issues = this;

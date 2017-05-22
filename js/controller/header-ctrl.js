@@ -1,7 +1,6 @@
 /*
  * Controlleur pour la barre de navigation
  */
-app.co
 app.controller('HeaderCtrl',function(AuthService,NotifyService,LocationService,$state,$scope,$rootScope) {
 
     var header = this;

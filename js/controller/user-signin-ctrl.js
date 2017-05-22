@@ -1,7 +1,6 @@
 /*
  * Controlleur pour la creation d'un nouvel utilisateur
  */
-app.co
 app.controller('UserSigninCtrl',function($scope, AuthService, NotifyService, $http, $state, API_USER_URL) {
 
     var userDetail = this;

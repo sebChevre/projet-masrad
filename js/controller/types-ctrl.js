@@ -1,7 +1,6 @@
 /*
  * Controlleur pour a gestion des types d'issues
  */
-app.co
 app.controller('TypesCtrl', function (IssuesService, $scope, $rootScope, API_ISSUES_TYPE) {
     var types = this;
     types.all = [];

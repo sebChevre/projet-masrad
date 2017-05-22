@@ -1,7 +1,6 @@
 /*
  * Controlleur de la fenêtre modale de saisie d'une issue
  */
-app.co
 app.controller('ModalInstanceCtrl', [
     '$scope', '$element', 'title', 'close', 'latitude', 'longitude', 'types', 'selectedType',
     function ($scope, $element, title, close, latitude, longitude, types, selectedType) {
