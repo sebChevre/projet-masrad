@@ -5,16 +5,16 @@ Réalisation:
 * Grégoire Blanc
 * Sébastien Chèvre
 
-## Généralités
+# Généralités
 La documentation de l'API Citizen Engagement servant de back pour le travail se trouve [ici][citizenAPI].
 Ce projet est basé sur le cours dispensé dans le cadre du [MAS-RAD DFA][masrad].
 
 
-## Struture générale de l'application
+# Struture générale de l'application
 La structure générale de l'application est schématisée ci-dessous:
 ![alt text](https://www.lucidchart.com/publicSegments/view/3dbb8e43-bb15-4d69-b029-97bff53093e3/image.png)
 
-### Navigation
+## Navigation
 Le schéma ci-dessous affiche le schéma de navigation entre les différentes pages:
 ![alt text](https://www.lucidchart.com/publicSegments/view/91fc6fa5-19c0-4886-b473-ed1b005e493b/image.png)
 
@@ -39,7 +39,7 @@ La communication entre les différents service et controlleurs, et entre les con
 Le schéma ci-dessous illustre les communications événementielles:
 ![alt_text](https://www.lucidchart.com/publicSegments/view/aeadc2c7-c2c4-4ad8-ac21-589dddbdcdb9/image.png)
 
-
+# Authentification et gestion des droits
 ## Processus d'authentification
 Le processus d'authentification se déroule selon les étapes suivantes:
 * Accès du client à l'url racine: /
@@ -49,8 +49,16 @@ Le processus d'authentification se déroule selon les étapes suivantes:
 
 ![alt text](https://www.lucidchart.com/publicSegments/view/1200f078-7542-4752-a0f0-033b7db5be4b/image.png)
 
+## Geston des rôles
+L'application gère deux rôle différents:
+* **citizen** : droit standard permettant de consulter, afficher et crééer des issues
+* **staff** : droit d'administration permettant de gérer les droits utilisateurs et les types d'issues
+Les routes **users** et **types** sont réservés aux utilisateurs ayant le rôle **staff**.
+Lors de la conneion à l'application, si l'utilisateur a les droits **staff** le menu staff permetant l'accès aux deux routes décrites ci-dessus est disponible:
+![Menu Staff](https://www.lucidchart.com/publicSegments/view/cbdb2045-3ad0-400e-ad19-9207d14897d0/image.png)
 
-##Améliorations
+
+## Améliorations
 * Affichage des issues recrées à chaque fois un marker, utiliser et réafficher l'issue présente en mémoire
 * Implémenter un système de delivery de l'application (WebPack, npm, ...)
 
