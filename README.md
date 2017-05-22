@@ -12,7 +12,7 @@ Ce projet est basé sur le cours dispensé dans le cadre du [MAS-RAD DFA][masrad
 
 ## Struture générale de l'application
 La structure générale de l'application est schématisée ci-dessous:
-![alt text](https://www.lucidchart.com/publicSegments/view/bf89edad-1845-4da2-a514-6ec719cd9437/image.png)
+![alt text](https://www.lucidchart.com/publicSegments/view/3dbb8e43-bb15-4d69-b029-97bff53093e3/image.png)
 
 ### Navigation
 Le schéma ci-dessous affiche le schéma de navigation entre les différentes pages:
