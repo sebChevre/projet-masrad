@@ -5,7 +5,7 @@ app.controller('UsersCtrl', function (UsersService, $scope, $rootScope, API_USER
     var $allUsersLoaded = $('#all-users-loaded');
 
     $scope.init = function () {
-        console.log('[UsersCtrl] - Init')
+        console.log('[UsersCtrl] - Init');
         UsersService.getAllUsers(API_USER_URL);
         $allUsersLoaded.show();
     };
@@ -33,8 +33,6 @@ app.controller('UsersCtrl', function (UsersService, $scope, $rootScope, API_USER
         console.log('[UsersCtrl] - addStaffUser received, update user=' + args);
         updateUsersList(args);
         addStaffInfo();
-        
-        
     });
 
     function updateUsersList(user) {
