@@ -37,7 +37,7 @@ La communication entre les différents service et controlleurs, et entre les con
 
 
 Le schéma ci-dessous illustre les communications événementielles:
-![alt_text](https://www.lucidchart.com/publicSegments/view/4d684cf2-6382-4a38-8423-b2197f54b7f4/image.png)
+![alt_text](https://www.lucidchart.com/publicSegments/view/aeadc2c7-c2c4-4ad8-ac21-589dddbdcdb9/image.png)
 
 
 ## Processus d'authentification
